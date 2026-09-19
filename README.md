@@ -11,7 +11,7 @@ Statik İngilizce ve Türkçe web sitesi. Kaynak: 19 Eylül 2026 tarihinde kayde
 - `assets/images/`: Orijinal siteden indirilen 15 görsel/logo.
 - `js/site.js`: Lightbox ve form davranışı.
 
-Build komutu veya paket kurulumu gerekmez. Klasörü statik HTTP sunucusuyla açın. HTML'e yeni utility sınıfları eklemek otomatik CSS üretmez; ilgili CSS dosyasında stilini de tanımlayın. Mevcut utility stilleri orijinal görsel davranışı korumak için saklandı.
+Yerel önizleme için paket kurulumu gerekmez. Klasörü statik HTTP sunucusuyla açın. HTML'e yeni utility sınıfları eklemek otomatik CSS üretmez; ilgili CSS dosyasında stilini de tanımlayın. Mevcut utility stilleri orijinal görsel davranışı korumak için saklandı.
 
 ## Durum
 
@@ -21,6 +21,8 @@ Build komutu veya paket kurulumu gerekmez. Klasörü statik HTTP sunucusuyla aç
 
 ## GitHub'dan yayın
 
-Bu depo tek kaynak olarak kullanılabilir. Yayın hizmetine GitHub deposu ve main dalı bağlanır; çıktı klasörü depo köküdür, build gerekmez. Ardından hawan.co ve www.hawan.co hizmete eklenir; hizmetin verdiği DNS kayıtları GoDaddy'de uygulanır. E-posta MX/TXT kayıtları korunmalıdır.
+Cloudflare Pages seçilmiştir. GitHub deposu adnanavnidenizer/hawan, üretim dalı main, framework None, build komutu `node build.cjs`, çıktı klasörü `dist`. Bu komut yalnızca site dosyalarını kopyalar; paket kurulumu yoktur. `_redirects` eski /home adresini köke 301 ile yönlendirir. Yayın çıktısında eski yönlendirme klasörleri bulunmaz; böylece uzantısız Türkçe sayfayla yönlendirme döngüsü oluşmaz.
+
+Önce pages.dev önizlemesi doğrulanır. Ardından hawan.co ve www.hawan.co eklenir. Kök alan adı için Cloudflare DNS kurulumu gerekebilir; alan adı kaydı GoDaddy'de kalabilir. Mevcut e-posta MX/TXT kayıtları korunmalıdır. Hesap bağlantısı ve DNS geçişi henüz tamamlanmamıştır.
 
 Özel depodan GitHub Pages yayını hesap planına bağlıdır. Yayın hizmeti ve olası ücretler kullanıcı tarafından kararlaştırılmadan DNS veya hesap planı değiştirilmez.
