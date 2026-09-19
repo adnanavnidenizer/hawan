@@ -43,3 +43,7 @@
 .gallery-thumb img{position:absolute;inset:0;width:100%;height:100%}
 .viewer-arrow{filter:drop-shadow(0 0 3px rgba(255,255,255,.85)) drop-shadow(0 0 8px rgba(255,255,255,.4))}
 @media(max-width:767px){.thumbnail-grid{width:100%;aspect-ratio:auto;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:none}}
+/* Transfer the space below the displayed image to below the grid. */
+.gallery-viewer{height:calc(100svh - var(--gallery-bottom-space,0px));min-height:0;padding-top:var(--gallery-top-space,32px);padding-bottom:0}
+.gallery-viewer .viewer-image{height:var(--gallery-image-height,auto);flex:none;object-position:center bottom}
+.gallery-contact-sheet{padding-bottom:var(--gallery-bottom-space,0px)}
