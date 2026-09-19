@@ -50,6 +50,6 @@
 /* Restore the viewer spacing; fit a variable number of squares into one screen. */
 .gallery-viewer{height:100svh;min-height:360px;padding:32px 70px}
 .gallery-viewer .viewer-image{height:100%;object-position:center}
-.gallery-contact-sheet{position:relative;height:auto;min-height:0;padding:0}
+.gallery-contact-sheet{position:relative;height:auto;min-height:0;padding:0 0 var(--gallery-footer-space,32px)}
 .thumbnail-grid{width:100%;aspect-ratio:auto;grid-template-columns:repeat(var(--gallery-columns,4),minmax(0,1fr));grid-template-rows:none;grid-auto-rows:auto;gap:0}
 @media(max-width:767px){.gallery-viewer{padding:20px 12px}.thumbnail-grid{grid-template-columns:repeat(var(--gallery-columns,3),minmax(0,1fr))}}

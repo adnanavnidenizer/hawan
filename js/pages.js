@@ -33,6 +33,23 @@ if (viewer) {
  }, {passive:true});
 }
 
+// Repeat the viewer's lower breathing room below the contact sheet.
+if (viewer) {
+ const photo = viewer.querySelector('.viewer-image');
+ function restoreFooterSpace() {
+  if (!photo.naturalWidth) return;
+  const style = getComputedStyle(viewer);
+  const vertical = parseFloat(style.paddingBottom);
+  const available = viewer.clientHeight - parseFloat(style.paddingTop) - vertical;
+  const width = viewer.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+  const displayedHeight = Math.min(available, width * photo.naturalHeight / photo.naturalWidth);
+  viewer.parentElement.style.setProperty('--gallery-footer-space', (vertical + (available - displayedHeight) / 2) + 'px');
+ }
+ photo.addEventListener('load', restoreFooterSpace);
+ new ResizeObserver(restoreFooterSpace).observe(viewer);
+ restoreFooterSpace();
+}
+
 // Smallest column count that fits every square within one viewport section.
 function galleryColumns(count, width, height) {
  if (!count || width <= 0 || height <= 0) return 1;
