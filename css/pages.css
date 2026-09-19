@@ -47,3 +47,9 @@
 .gallery-viewer{height:calc(100svh - var(--gallery-bottom-space,0px));min-height:0;padding-top:var(--gallery-top-space,32px);padding-bottom:0}
 .gallery-viewer .viewer-image{height:var(--gallery-image-height,auto);flex:none;object-position:center bottom}
 .gallery-contact-sheet{padding-bottom:var(--gallery-bottom-space,0px)}
+/* Restore the viewer spacing; fit a variable number of squares into one screen. */
+.gallery-viewer{height:100svh;min-height:360px;padding:32px 70px}
+.gallery-viewer .viewer-image{height:100%;object-position:center}
+.gallery-contact-sheet{position:relative;height:auto;min-height:0;padding:0}
+.thumbnail-grid{width:100%;aspect-ratio:auto;grid-template-columns:repeat(var(--gallery-columns,4),minmax(0,1fr));grid-template-rows:none;grid-auto-rows:auto;gap:0}
+@media(max-width:767px){.gallery-viewer{padding:20px 12px}.thumbnail-grid{grid-template-columns:repeat(var(--gallery-columns,3),minmax(0,1fr))}}

@@ -33,27 +33,31 @@ if (viewer) {
  }, {passive:true});
 }
 
-// Keep the image flush with its grid; preserve the former lower space below it.
-if (viewer) {
- const galleryImage = viewer.querySelector('.viewer-image');
- const probe = document.createElement('span');
- probe.setAttribute('aria-hidden', 'true');
- probe.style.cssText = 'position:absolute;height:100svh;width:0;visibility:hidden;pointer-events:none';
- viewer.append(probe);
- function transferGallerySpace() {
-  if (!galleryImage.naturalWidth) return;
-  const side = innerWidth < 768 ? 12 : 70;
-  const vertical = innerWidth < 768 ? 20 : 32;
-  const base = probe.getBoundingClientRect().height;
-  const available = base - vertical * 2;
-  const height = Math.min(available, (viewer.clientWidth - side * 2) * galleryImage.naturalHeight / galleryImage.naturalWidth);
-  const space = vertical + (available - height) / 2;
-  const scope = viewer.parentElement;
-  scope.style.setProperty('--gallery-bottom-space', space + 'px');
-  scope.style.setProperty('--gallery-top-space', space + 'px');
-  scope.style.setProperty('--gallery-image-height', height + 'px');
- }
- galleryImage.addEventListener('load', transferGallerySpace);
- window.addEventListener('resize', transferGallerySpace);
- transferGallerySpace();
+// Smallest column count that fits every square within one viewport section.
+function galleryColumns(count, width, height) {
+ if (!count || width <= 0 || height <= 0) return 1;
+ let columns = Math.max(1, Math.ceil(Math.sqrt(count * width / height)));
+ while (Math.ceil(count / columns) * width / columns > height) columns++;
+ return columns;
 }
+const adaptiveGrid = document.querySelector('.thumbnail-grid');
+if (adaptiveGrid) {
+ const measure = document.createElement('span');
+ measure.setAttribute('aria-hidden', 'true');
+ measure.style.cssText='position:absolute;width:0;height:100svh;visibility:hidden;pointer-events:none';
+ adaptiveGrid.parentElement.append(measure);
+ let pending;
+ function layoutGrid() {
+  cancelAnimationFrame(pending);
+  pending = requestAnimationFrame(() => {
+   const count=adaptiveGrid.querySelectorAll('.gallery-thumb').length;
+   const columns=galleryColumns(count,adaptiveGrid.clientWidth,measure.getBoundingClientRect().height);
+   adaptiveGrid.style.setProperty('--gallery-columns',columns);
+  });
+ }
+ new ResizeObserver(layoutGrid).observe(adaptiveGrid);
+ new ResizeObserver(layoutGrid).observe(measure);
+ new MutationObserver(layoutGrid).observe(adaptiveGrid,{childList:true});
+ layoutGrid();
+}
+
