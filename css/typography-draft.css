@@ -81,3 +81,50 @@ main section:not(.photo-section) { padding-top: 40px; padding-bottom: 40px; }
  #craft > div > .text-center { margin-bottom: 28px; }
  main section:has(img[alt*="Portrait"]), main section:has(img[alt*="Portresi"]) { gap: 20px; }
 }
+/* Consistent type roles and uncropped mobile photography. */
+main { container-type: inline-size; }
+:root { --section-title: clamp(29px, 7.8vw, 42px); --section-body: clamp(14px, 3.6vw, 17px); --section-label: 10px; --title-gap: 18px; }
+html main section :is(h1,h2,h3) { font-size: var(--section-title) !important; line-height: 1.08; margin-bottom: var(--title-gap); }
+html main section p { font-size: var(--section-body) !important; line-height: 1.55; }
+html main section span.block { font-size: var(--section-label) !important; }
+@media (min-width: 768px) {
+ :root { --section-title: clamp(36px, 3.825vw, 61.5px); --section-body: clamp(13.5px, 1.05vw, 16.5px); --section-label: 8.25px; --title-gap: 24px; }
+ .photo-section .photo-copy { width: 34%; max-width: 500px; }
+ .scene-hero .photo-copy, .scene-texture .photo-copy, .scene-pleasure .photo-copy { left: 10%; right: auto; }
+ .scene-organic .photo-copy, .scene-utility .photo-copy { right: 10%; left: auto; }
+ .scene-hero .photo-copy { top: calc(50% + var(--title-gap)); }
+ main header a { font-size: 12px; }
+ main header > div:first-child a { font-size: 9px; }
+ main section :is(input,button) { font-size: 9px; }
+ main footer a { font-size: 9px; }
+ main footer p { font-size: 8.25px; }
+}
+@media (max-width: 767px) {
+ main section, main .scene-hero { height: calc(100cqw * 1600 / 788); min-height: calc(100cqw * 1600 / 788) !important; }
+ .photo-section > div:first-child > img { width: 100%; height: 100%; object-fit: contain; object-position: center top; }
+ .photo-section { --image-height: calc(100cqw * 1600 / 900); }
+ .scene-organic .photo-copy { height: calc(var(--image-height) * .64); }
+ .scene-texture .photo-copy { height: calc(var(--image-height) * .46); }
+ .scene-utility .photo-copy { height: calc(var(--image-height) * .49); }
+ .scene-pleasure .photo-copy { height: calc(100cqw * 1600 / 899 * .58); }
+ .scene-hero .photo-copy { transform: translateY(var(--title-gap)); }
+ #craft .grid { gap: 16px; }
+ #craft > div > .text-center { margin-bottom: 20px; }
+ #craft h3 { margin-bottom: 8px; }
+}
+
+@media (max-width: 767px) {
+ #craft { padding-top: 16px; padding-bottom: 16px; }
+ #craft .grid > .relative { padding-top: 0; }
+ #craft .grid { gap: 12px; }
+ #craft > div > .text-center { margin-bottom: 16px; }
+ #craft h2 { margin-bottom: 12px; }
+ #craft h3 { margin-bottom: 6px; }
+}
+html main section :is(h1,h2,h3) { line-height: 1.08 !important; }
+@media (max-width: 767px) {
+ html main section p { line-height: 1.4 !important; }
+ #craft { padding-left: 16px; padding-right: 16px; }
+ #craft span.block { margin-bottom: 6px; }
+}
+.scene-hero .photo-copy h1 { margin-bottom: var(--title-gap); }
