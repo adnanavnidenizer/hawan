@@ -1,0 +1,42 @@
+/* Typography proposal: original images, typefaces and section order retained. */
+.photo-copy > span { font-size: 11px; letter-spacing: .24em; margin-bottom: 18px; }
+.photo-copy h1, .photo-copy h2 { font-size: clamp(40px, 4.6vw, 72px); line-height: 1.04; letter-spacing: -.025em; margin-bottom: 24px; text-wrap: balance; }
+.photo-copy > p { font-size: clamp(15px, 1.12vw, 18px); line-height: 1.75; font-weight: 300; max-width: 40ch; margin-bottom: 0; text-wrap: pretty; }
+@media (min-width: 768px) {
+ .photo-section { padding: 0; min-height: max(700px, 100svh); }
+ .photo-section .photo-copy { position: absolute; inset: auto; margin: 0; padding: 0; width: 34%; max-width: 490px; }
+ .scene-hero .photo-copy { left: 8%; top: 50%; transform: translateY(-42%); }
+ .scene-hero .photo-copy > p { max-width: 39ch; }
+ .scene-hero #waitlist { margin-top: 36px; max-width: 390px; }
+ .scene-organic .photo-copy { right: 7%; bottom: 10%; width: 31%; }
+ .scene-texture .photo-copy { left: 7%; bottom: 13%; width: 31%; }
+ .scene-utility .photo-copy { right: 8%; top: 50%; transform: translateY(-28%); width: 34%; }
+ .scene-utility h2 { font-size: clamp(38px, 3.8vw, 60px); }
+ .scene-pleasure .photo-copy { left: 7%; bottom: 9%; width: 34%; }
+ .scene-pleasure h2 { font-size: clamp(40px, 4vw, 64px); }
+ .scene-organic .photo-copy, .scene-pleasure .photo-copy { text-shadow: 0 2px 14px rgba(0,0,0,.35); }
+}
+@media (min-width: 768px) and (max-width: 1050px) {
+ .photo-section .photo-copy { width: 40%; }
+ .photo-copy h1, .photo-copy h2 { font-size: 46px; }
+ .photo-copy > p { font-size: 15px; line-height: 1.65; }
+ .scene-hero .photo-copy { left: 5%; }
+ .scene-organic .photo-copy,.scene-utility .photo-copy { right: 5%; }
+ .scene-texture .photo-copy,.scene-pleasure .photo-copy { left: 5%; }
+}
+@media (max-width: 767px) {
+ .photo-section .photo-copy { padding: 42px 26px 24px; }
+ .photo-copy h1,.photo-copy h2 { font-size: clamp(32px, 8.6vw, 48px); line-height: 1.08; margin-bottom: 18px; }
+ .photo-copy > span { font-size: 10px; margin-bottom: 14px; }
+ .photo-copy > p { font-size: clamp(12px, 3.25vw, 15px); line-height: 1.65; max-width: 39ch; }
+ .scene-hero .photo-copy { padding-top: 128px; }
+ .scene-hero .photo-copy > span { font-size: 9px; letter-spacing: .2em; margin-bottom: 12px; }
+ .scene-hero .photo-copy > p { margin-bottom: auto; }
+ .scene-hero .photo-copy h1 { font-size: clamp(32px, 8.8vw, 45px); margin-bottom: 16px; }
+ .scene-hero #waitlist { padding-bottom: 4px; }
+ .scene-texture .photo-copy { align-items: flex-end; text-align: right; padding-top: 36px; }
+ .scene-texture .photo-copy > p { max-width: 29ch; }
+ .scene-texture h2 { max-width: 10ch; }
+ .scene-utility .photo-copy { padding-top: 36px; }
+ html[lang=tr] .photo-copy h1,html[lang=tr] .photo-copy h2 { font-size: clamp(29px, 7.8vw, 42px); }
+}
