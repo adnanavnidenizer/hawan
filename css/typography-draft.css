@@ -128,3 +128,7 @@ html main section :is(h1,h2,h3) { line-height: 1.08 !important; }
  #craft span.block { margin-bottom: 6px; }
 }
 .scene-hero .photo-copy h1 { margin-bottom: var(--title-gap); }
+@media (min-width: 768px) {
+ .scene-hero .photo-copy, .scene-texture .photo-copy, .scene-pleasure .photo-copy { left: 12%; }
+ .scene-organic .photo-copy, .scene-utility .photo-copy { right: 12%; }
+}
