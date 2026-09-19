@@ -41,3 +41,19 @@
  .scene-utility .photo-copy { padding-top: 36px; }
  html[lang=tr] .photo-copy h1,html[lang=tr] .photo-copy h2 { font-size: clamp(29px, 7.8vw, 42px); }
 }
+/* Align copy within the image's usable space rather than near its lower edge. */
+@media (min-width: 768px) {
+ .photo-section .photo-copy { top: 50%; text-align: left; align-items: flex-start; }
+ .scene-organic .photo-copy, .scene-utility .photo-copy { text-align: right; align-items: flex-end; }
+ .scene-hero #waitlist { align-self: flex-start; }
+}
+@media (max-width: 767px) {
+ .scene-organic { --mobile-space: 64%; }
+ .scene-texture { --mobile-space: 46%; }
+ .scene-utility { --mobile-space: 49%; }
+ .scene-pleasure { --mobile-space: 58%; }
+ .photo-section .photo-copy { inset: 0 0 auto; height: var(--mobile-space); padding: 24px 26px; justify-content: center; }
+ .scene-hero .photo-copy { inset: 0; height: 56%; padding: 110px 26px 0; }
+ .scene-hero .photo-copy > p { margin-bottom: 0; }
+ .scene-hero #waitlist { position: absolute; top: calc(100% / .56 - 64px); bottom: auto; left: 26px; width: calc(100% - 52px); padding: 0; }
+}
