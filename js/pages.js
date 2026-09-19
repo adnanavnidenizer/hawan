@@ -9,8 +9,6 @@ if (viewer) {
   image.src = target.src;
   image.alt = target.alt;
   image.classList.toggle('is-logo', target.src.endsWith('.png'));
-  viewer.querySelector('.viewer-title').textContent = target.alt;
-  viewer.querySelector('.viewer-count').textContent = `${String(current + 1).padStart(2, '0')} / ${thumbs.length}`;
   thumbs.forEach((button, i) => button.setAttribute('aria-pressed', String(i === current)));
  }
  viewer.querySelector('.viewer-prev').addEventListener('click', () => show(current - 1));

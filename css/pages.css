@@ -17,3 +17,18 @@
 @media(max-width:767px){.gallery-viewer{padding:20px 12px 60px}.viewer-arrow{width:44px;height:52px;font-size:24px}.viewer-prev{left:8px}.viewer-next{right:8px}.viewer-caption{left:18px;right:18px;font-size:10px}.gallery-contact-sheet{padding:24px 16px;gap:18px}.sheet-heading h2{font-size:26px}.thumbnail-grid{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(5,minmax(0,1fr));gap:8px}.gallery-thumb{padding:4px}}
 @media(hover:none){.viewer-arrow{opacity:1}}
 @media(prefers-reduced-motion:reduce){.viewer-arrow{transition:none}}
+/* Seamless square contact sheet with the home gallery's hover treatment. */
+.gallery-contact-sheet{padding:24px 0;gap:18px;align-items:center}
+.sheet-heading{width:90%;height:34px}
+.thumbnail-grid{flex:none;width:min(100%,calc((100svh - 100px)*5/3));aspect-ratio:5/3;grid-template-columns:repeat(5,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr));gap:0;margin:auto}
+.gallery-thumb{padding:0;aspect-ratio:1;border:0;box-shadow:none!important}
+.gallery-thumb img{object-fit:cover;filter:grayscale(20%);transition:transform .7s}
+.gallery-thumb::after{content:'';position:absolute;inset:16px;border:1px solid transparent;pointer-events:none;transition:inset .7s,border-color .7s}
+.gallery-thumb:hover img,.gallery-thumb:focus-visible img{transform:scale(1.05)}
+.gallery-thumb:hover::after,.gallery-thumb:focus-visible::after{inset:12px;border-color:rgba(253,251,247,.5)}
+.gallery-thumb>span{display:none}
+.gallery-viewer{padding:32px 70px}
+.viewer-arrow{border:0;background:transparent;color:rgba(0,0,0,.5);opacity:0!important;box-shadow:none}
+.gallery-viewer:hover .viewer-arrow{opacity:1!important}
+@media(max-width:767px){.gallery-viewer{padding:20px 12px}.thumbnail-grid{width:min(100%,calc((100svh - 100px)*3/5));aspect-ratio:3/5;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(5,minmax(0,1fr));gap:0}}
+@media(prefers-reduced-motion:reduce){.gallery-thumb img,.gallery-thumb::after{transition:none}}
