@@ -1,0 +1,14 @@
+/* Header and footer markup is shared directly with the home template. */
+.secondary-page { padding-top: 122px; }
+header, footer { font-family: 'DM Sans', sans-serif; line-height: 1.5; }
+header img, footer img { width: auto; }
+footer p { line-height: 1.5; font-size: 11px; margin: 0; }
+footer a { font-size: 12px; }
+@media(min-width:640px) { .secondary-page { padding-top: 132px; } }
+@media(min-width:768px) {
+ .secondary-page { padding-top: 142px; }
+ header a { font-size: 12px; }
+ header > div:first-child a { font-size: 9px; }
+ footer a { font-size: 9px; }
+ footer p { font-size: 8.25px; }
+}
