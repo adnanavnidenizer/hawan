@@ -58,3 +58,9 @@
 @media(max-width:767px){.gallery-page-heading{padding-top:40px}}
 /* Keep gallery and store copy explicitly centered in both languages. */
 .gallery-page-heading .eyebrow,.store-intro :is(.eyebrow,h1,p),.store-categories a,.store-collection :is(h2,figcaption,.model-actions a,.model-actions button),.store-category-empty :is(h2,p){text-align:center}
+/* Full-width title bands matching Header 1. */
+.secondary-page .store-intro{max-width:none;padding-left:0;padding-right:0}
+.secondary-page .store-intro h1{padding:0 24px}
+.secondary-page .store-intro p{padding:0 24px;max-width:518px}
+.gallery-page-heading{padding-left:0;padding-right:0}
+.secondary-page .store-intro>.eyebrow,.gallery-page-heading h1.eyebrow{display:flex;align-items:center;justify-content:center;width:100%;height:30px;min-height:30px;padding:0 20px;background:#c8c0b2;color:#fff;line-height:1;margin-top:0}
