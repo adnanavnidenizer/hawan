@@ -23,3 +23,4 @@ header .hc-header{left:auto;right:16px;top:10px}
 .site-header .header-languages,.site-header .header-languages a,.site-header .header-languages span{color:#fff}
 .site-header .hc-header svg{width:22px;height:22px}
 .site-header .hc-header [data-cart-count][hidden]{display:none}
+.site-header .header-languages{margin-right:auto}
