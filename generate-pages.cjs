@@ -4,7 +4,7 @@ const root = __dirname;
 const commerce = require('./commerce.json');
 const routes = {en:{home:'/en/home',gallery:'/en/gallery',shop:'/en/shop'},tr:{home:'/tr/ana-sayfa',gallery:'/tr/galeri',shop:'/tr/magaza'}};
 const photos = ['1wpVdCLw_iMiFEyREtaeEy0HhczUU2c18.jpg','1xZmrzdA47ImJogL0_9y4oONL5ZL63JC2.jpg','1VjD_BFMPkHXkFycNZ8IbAW-c8QS_SNjY.jpg','183LoPhbVaj2wphYY42tAAU6a2JEcoRVZ.jpg','1IdNl7Vp9sc0JYws6citq-qkWRi6dOmtd.jpg','1TDgyUIODFPQf9gK32z_xED77rc1uJJvT.jpg'];
-const logo='/assets/images/1z_ej3UIdM4Awa6kx_7ytjLjuUO9AGCMt.png';
+const logo='/assets/brand/hawan-logo.png';
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function write(url,html){
  const tr=html.includes('lang="tr"');
@@ -30,7 +30,7 @@ for(const l of ['en','tr']){
  const tr=l==='tr',r=routes[l];
  let home=fs.readFileSync(path.join(root,tr?'index-tr.html':'index.html'),'utf8');
  home=home.replace(/(["'])((?:assets|css|js)\/)/g,'$1/$2').replace('href="index.html"',`href="${routes.en.home}"`).replace('href="index-tr.html"',`href="${routes.tr.home}"`).replace('href="#philosophy"',`href="${r.gallery}"`).replace('href="#craft"',`href="${r.shop}"`).replace('>GALLERY</a>',tr?'>GALERİ</a>':'>GALLERY</a>').replace('>SHOP</a>',tr?'>MAĞAZA</a>':'>STORE</a>');
- home=home.replace(/(<img src="\/assets\/images\/1z_ej3UIdM4Awa6kx_7ytjLjuUO9AGCMt.png"[^>]+>)/,`<a href="${r.home}" aria-label="HAWAN">$1</a>`).replace('</head>',alternates('home')+'<link rel="stylesheet" href="/css/chrome.css"></head>');
+ home=home.replace(/(<img src="\/assets\/brand\/hawan-logo.png"[^>]+>)/,`<a href="${r.home}" aria-label="HAWAN">$1</a>`).replace('</head>',alternates('home')+'<link rel="stylesheet" href="/css/chrome.css"></head>');
  write(r.home,home);
 
  const excludedGallery=new Set(["183LoPhbVaj2wphYY42tAAU6a2JEcoRVZ.jpg","1IdNl7Vp9sc0JYws6citq-qkWRi6dOmtd.jpg","1TDgyUIODFPQf9gK32z_xED77rc1uJJvT.jpg","1EpInJSkem1CmNEOchEw95UW8XALYpSth.jpg","1_Dta5Z9RVmYjtttM9SsH5KYxEHng9BM4.jpg","1fSWU7hC2BKr2pzesuual7ikg7lL1G34-.jpg","1vxb4_matyd_lnGSWDWQnQHWBQT802JLc.jpg","1wlaVVgswHyGznrdipXnHpd-SnSDU3dFo.jpg",'1z_ej3UIdM4Awa6kx_7ytjLjuUO9AGCMt.png','19JJP6_u-qhbG3Rn4NIdiqwetXk0UjtHI.jpg','1SaIce1ZsJMOMUMeECBZx5js87pgc64x4.jpg','1SSxlSM9ZGpMO3KeJn4nNkg2P9ZiWEMtp.jpg']);
