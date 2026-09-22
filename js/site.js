@@ -2,7 +2,27 @@ let previousFocus;
 const lightbox=document.getElementById('gallery-lightbox');
 const galleryImage=document.getElementById('lightbox-img');
 let openTimer;
+const homeGalleryImages=[...document.querySelectorAll('.home-gallery .gallery-thumb img')];
+let lightboxIndex=0;
+function stepLightbox(direction){
+ if(!homeGalleryImages.length)return;
+ lightboxIndex=(lightboxIndex+direction+homeGalleryImages.length)%homeGalleryImages.length;
+ const selected=homeGalleryImages[lightboxIndex];
+ galleryImage.src=selected.src;galleryImage.alt=selected.alt;
+}
+if(lightbox&&homeGalleryImages.length){
+ const tr=document.documentElement.lang==='tr';
+ for(const [direction,name,label] of [[-1,'prev',tr?'Önceki görsel':'Previous image'],[1,'next',tr?'Sonraki görsel':'Next image']]){
+  const button=document.createElement('button');button.type='button';
+  button.className='home-viewer-arrow home-viewer-'+name;
+  button.setAttribute('aria-label',label);button.innerHTML='<span aria-hidden="true">'+(direction<0?'←':'→')+'</span>';
+  button.addEventListener('click',event=>{event.stopPropagation();stepLightbox(direction);});
+  lightbox.append(button);
+ }
+}
 function openLightbox(src){
+ lightboxIndex=Math.max(0,homeGalleryImages.findIndex(img=>img.src===src));
+ galleryImage.alt=homeGalleryImages[lightboxIndex]?.alt||'Gallery Image';
  previousFocus=document.activeElement;
  galleryImage.src=src;
  lightbox.classList.remove('opacity-0','pointer-events-none');
@@ -23,7 +43,12 @@ function closeLightbox(){
 document.addEventListener('keydown',event=>{
  if(lightbox.getAttribute('aria-hidden')==='false'){
   if(event.key==='Escape')closeLightbox();
-  if(event.key==='Tab'){event.preventDefault();lightbox.querySelector('button').focus();}
+  if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();stepLightbox(event.key==='ArrowLeft'?-1:1);}
+  if(event.key==='Tab'){
+   const buttons=[...lightbox.querySelectorAll('button')];
+   const index=buttons.indexOf(document.activeElement);
+   event.preventDefault();buttons[(index+(event.shiftKey?-1:1)+buttons.length)%buttons.length].focus();
+  }
  }
 });
 document.querySelectorAll('[onclick^="openLightbox"]').forEach(element=>{
