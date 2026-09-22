@@ -9,7 +9,12 @@ const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'
 function write(url,html){
  const tr=html.includes('lang="tr"');
  if(!html.includes('/js/cart.js'))html=html.replace('</head>','<link rel="stylesheet" href="/css/cart.css"><script defer src="/js/cart.js"></script></head>');
- if(!html.includes('data-cart-open'))html=html.replace('</header>',`<button class="hc-header" type="button" data-cart-open>${tr?'SEPET':'CART'} <span data-cart-count>0</span></button></header>`);
+ if(!html.includes('class="header-1"'))html=html.replace(/<header\b[^>]*>([\s\S]*?)<\/header>/,(_,inner)=>{
+  const languages=inner.match(/<div\b[^>]*>[\s\S]*?<\/div>/)[0];
+  const links=languages.replace(/^<div[^>]*>/,'<div class="header-languages">');
+  const icon='<svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 9 4-6 4 6M3 9h18l-2 11H5L3 9Z"/><path d="M9 13v3m6-3v3"/></svg>';
+  return `<header class="site-header"><div class="header-1">${links}<button class="hc-header" type="button" data-cart-open aria-label="${tr?'Sepet':'Cart'}">${icon}<span data-cart-count aria-hidden="true">0</span></button></div><div class="header-2">${inner.replace(languages,'')}</div></header>`;
+ });
  html=html.replace(/(<button class="model-cart" type="button") disabled title="[^"]*"/g,'$1');
  const dir=path.join(root,url);fs.mkdirSync(dir,{recursive:true});fs.writeFileSync(path.join(dir,'index.html'),html);
 }

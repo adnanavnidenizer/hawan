@@ -19,12 +19,12 @@
 <main class="relative w-full">
 
     <!-- Header -->
-    <header class="absolute top-0 left-0 w-full z-50 px-4 py-4 md:px-16 flex flex-col md:flex-row items-center justify-between opacity-0-init animate-fade-in delay-500 bg-transparent">
-        <div class="absolute top-4 right-4 md:top-6 md:right-8 z-50 flex items-center gap-2 text-[10px] md:text-xs tracking-[0.2em] uppercase font-medium text-stone-500">
+    <header class="site-header"><div class="header-1"><div class="header-languages">
             <a href="/en/home" class="hover:text-stone-800 transition-colors duration-300">EN</a>
             <span class="text-stone-400">|</span>
             <a href="/tr/ana-sayfa" class="pointer-events-none text-stone-800">TR</a>
-        </div>
+        </div><button class="hc-header" type="button" data-cart-open aria-label="Sepet"><svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 9 4-6 4 6M3 9h18l-2 11H5L3 9Z"/><path d="M9 13v3m6-3v3"/></svg><span data-cart-count aria-hidden="true">0</span></button></div><div class="header-2">
+        
         <div class="w-full flex flex-row items-center justify-between">
             <!-- Left Link -->
             <div class="flex-1 flex justify-center md:justify-end md:pr-[100px] text-[12px] sm:text-[13px] md:text-base tracking-widest uppercase text-stone-500 font-medium">
@@ -44,7 +44,7 @@
         </div>
         
 
-    <button class="hc-header" type="button" data-cart-open>SEPET <span data-cart-count>0</span></button></header>
+    </div></header>
 
     <!-- Hero Section -->
     <section class="photo-section scene-hero snap-target relative min-h-[60vh] md:min-h-[100vh] flex flex-col md:flex-row items-center justify-start md:py-12 px-0 md:px-16 overflow-hidden md:overflow-clip">
