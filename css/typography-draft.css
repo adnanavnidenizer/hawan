@@ -179,3 +179,11 @@ html main section.quotation-section{background:#aa927b;height:auto;min-height:va
 html main section.quotation-section>div{width:100%;max-width:1100px;padding:0}
 html main section.quotation-section p{font-size:clamp(28px,3.4vw,52px)!important;line-height:1.35!important;color:#44403c;text-wrap:pretty;margin:0}
 
+/* Equal breathing room around the model heading and grid in both languages. */
+html main section.model-section{--models-space:28px;height:auto;min-height:0!important;padding-top:var(--models-space);padding-bottom:var(--models-space);gap:var(--models-space)}
+@media(max-width:767px){
+ html main .photo-section:not(.scene-hero){height:calc(100cqw * 1600 / 900);min-height:calc(100cqw * 1600 / 900)!important}
+ html main .photo-section.scene-pleasure{height:calc(100cqw * 1600 / 899);min-height:calc(100cqw * 1600 / 899)!important}
+ .scene-hero #waitlist.hero-store-action{top:calc(100cqw * 1600 / 788 * .88 - 18px);bottom:auto;height:auto;padding:0;transform:translateY(-50%);justify-content:center}
+ main section{margin-top:0;margin-bottom:0}
+}
