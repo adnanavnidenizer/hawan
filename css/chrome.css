@@ -13,7 +13,7 @@ footer a { font-size: 12px; }
  footer p { font-size: 8.25px; }
 }
 /* Warm footer palette shared by every localized page. */
-footer.bg-stone-800{background-color:#806653;border-color:#806653;color:#000}
+footer.bg-stone-800{background-color:#a49383;border-color:#a49383;color:#000}
 footer.bg-stone-800 a,footer.bg-stone-800 div{color:#000}
 footer.bg-stone-800 p{color:#000}
 
