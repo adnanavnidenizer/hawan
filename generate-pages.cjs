@@ -24,7 +24,7 @@ function shell(l,type,title,content){return `<!doctype html><html lang="${l}"><h
 for(const l of ['en','tr']){
  const tr=l==='tr',r=routes[l];
  let home=fs.readFileSync(path.join(root,tr?'index-tr.html':'index.html'),'utf8');
- home=home.replace(/(["'])((?:assets|css|js)\/)/g,'$1/$2').replace('href="index.html"',`href="${routes.en.home}"`).replace('href="index-tr.html"',`href="${routes.tr.home}"`).replace('href="#philosophy"',`href="${r.gallery}"`).replace('href="#craft"',`href="${r.shop}"`).replace('>GALLERY</a>',tr?'>GALERİ</a>':'>GALLERY</a>').replace('>SHOP</a>',tr?'>MAĞAZA</a>':'>SHOP</a>');
+ home=home.replace(/(["'])((?:assets|css|js)\/)/g,'$1/$2').replace('href="index.html"',`href="${routes.en.home}"`).replace('href="index-tr.html"',`href="${routes.tr.home}"`).replace('href="#philosophy"',`href="${r.gallery}"`).replace('href="#craft"',`href="${r.shop}"`).replace('>GALLERY</a>',tr?'>GALERİ</a>':'>GALLERY</a>').replace('>SHOP</a>',tr?'>MAĞAZA</a>':'>STORE</a>');
  home=home.replace(/(<img src="\/assets\/images\/1z_ej3UIdM4Awa6kx_7ytjLjuUO9AGCMt.png"[^>]+>)/,`<a href="${r.home}" aria-label="HAWAN">$1</a>`).replace('</head>',alternates('home')+'<link rel="stylesheet" href="/css/chrome.css"></head>');
  write(r.home,home);
 
@@ -62,8 +62,8 @@ for(const l of ['en','tr']){
  const categoryNav=`<nav class="store-categories" aria-label="${tr?'Ürün kategorileri':'Product categories'}">${categoryNames.map((name,i)=>`<a href="#${categoryIds[i]}">${name}</a>`).join('')}</nav>`;
  const mortars=modelSection.replace('id="models"',`id="${categoryIds[0]}"`).replace('class="model-section snap-target"','class="store-collection"').replace(/aria-label="[^"]*"/,`aria-labelledby="category-mortars"`).replace(/<h2 class="model-heading">[\s\S]*?<\/h2>/,`<h2 id="category-mortars" class="store-category-heading">${categoryNames[0]}</h2>`);
  const collection=categoryNav+mortars+categoryNames.slice(1).map((name,i)=>`<section id="${categoryIds[i+1]}" class="store-category-empty" aria-labelledby="category-${i+1}"><h2 id="category-${i+1}" class="store-category-heading">${name}</h2><p>${tr?'Yakında':'Coming soon'}</p></section>`).join('');
- const shop='<section class="store-intro"><span class="eyebrow">'+(tr?'MAĞAZA':'SHOP')+'</span><h1>'+(tr?'Tasarımını Seç...':'Choose Your Design...')+'</h1><p>'+(tr?'Doğal ahşap, üç ayaklı formlar. Yaşam alanına eşlik edecek tasarımı keşfet.':'Natural wood, three-legged forms. Discover a design to accompany your everyday life.')+'</p></section>'+collection+(commerce.provider==='coming-soon'?'':'<section class="store-availability"><div id="commerce-mount" data-provider="'+commerce.provider+'">'+purchase+'</div></section>');
- write(r.shop,shell(l,'shop',tr?'Mağaza':'Shop',shop).replace('</head>','<link rel="stylesheet" href="/css/store.css"></head>'));
+ const shop='<section class="store-intro"><span class="eyebrow">'+(tr?'MAĞAZA':'STORE')+'</span><h1>'+(tr?'Tasarımını Seç...':'Choose Your Design...')+'</h1><p>'+(tr?'Doğal ahşap, üç ayaklı formlar.<br>Yaşam alanına eşlik edecek tasarımı keşfet.':'Natural wood, three-legged forms.<br>Discover a design to accompany your everyday life.')+'</p></section>'+collection+(commerce.provider==='coming-soon'?'':'<section class="store-availability"><div id="commerce-mount" data-provider="'+commerce.provider+'">'+purchase+'</div></section>');
+ write(r.shop,shell(l,'shop',tr?'Mağaza':'Store',shop).replace('</head>','<link rel="stylesheet" href="/css/store.css"></head>'));
 
  const cartPath=tr?'/tr/sepet':'/en/cart';
  const cartHTML=shell(l,'shop',tr?'Sepetin':'Your Cart','<section class="hc hc-page" data-cart-page></section>').replace(/<link rel="alternate"[^>]*>/g,'').replace('</head>','<link rel="alternate" hreflang="tr" href="/tr/sepet/"><link rel="alternate" hreflang="en" href="/en/cart/"></head>').replace('href="/en/shop"','href="/en/cart/"').replace('href="/tr/magaza"','href="/tr/sepet/"');

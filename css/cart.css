@@ -4,3 +4,7 @@
 .model-actions .model-cart:hover,.product-detail [data-product-add]:hover{background:#f4f1e9;color:#625e55}
 .hc .hc-options .hc-solid{background:#f4f1e9;color:#625e55;border-color:#625e55}
 .hc .hc-options .hc-solid:hover{background:#625e55;color:#f4f1e9}
+/* Keep language links immediately before the cart on the right. */
+header > div:first-child{right:110px!important}
+header .hc-header{left:auto;right:16px;top:10px}
+@media(min-width:768px){header > div:first-child{right:132px!important}header .hc-header{right:32px;top:18px}}
