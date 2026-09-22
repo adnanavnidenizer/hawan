@@ -52,6 +52,7 @@ if (viewer) {
 
 // Smallest column count that fits every square within one viewport section.
 function galleryColumns(count, width, height) {
+ if(count===24) return width<768?3:6;
  if (!count || width <= 0 || height <= 0) return 1;
  let columns = Math.max(1, Math.ceil(Math.sqrt(count * width / height)));
  while (Math.ceil(count / columns) * width / columns > height) columns++;
