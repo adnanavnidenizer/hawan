@@ -53,3 +53,6 @@
 .gallery-contact-sheet{position:relative;height:auto;min-height:0;padding:0 0 var(--gallery-footer-space,32px)}
 .thumbnail-grid{width:100%;aspect-ratio:auto;grid-template-columns:repeat(var(--gallery-columns,4),minmax(0,1fr));grid-template-rows:none;grid-auto-rows:auto;gap:0}
 @media(max-width:767px){.gallery-viewer{padding:20px 12px}.thumbnail-grid{grid-template-columns:repeat(var(--gallery-columns,3),minmax(0,1fr))}}
+.gallery-page-heading{padding:64px 24px 0;text-align:center}
+.gallery-page-heading h1.eyebrow{font-family:var(--sans);font-size:9px;line-height:1.5;font-weight:400;letter-spacing:.24em;margin:0}
+@media(max-width:767px){.gallery-page-heading{padding-top:40px}}
