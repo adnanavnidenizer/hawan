@@ -64,3 +64,4 @@
 .secondary-page .store-intro p{padding:0 24px;max-width:518px}
 .gallery-page-heading{padding-left:0;padding-right:0}
 .secondary-page .store-intro>.eyebrow,.gallery-page-heading h1.eyebrow{display:flex;align-items:center;justify-content:center;width:100%;height:30px;min-height:30px;padding:0 20px;background:#c8c0b2;color:#fff;line-height:1;margin-top:0}
+.secondary-page .store-intro,.secondary-page .gallery-page-heading{padding-top:0}
