@@ -35,6 +35,11 @@ for(const l of ['en','tr']){
  write(r.home,home);
 
  let purchase=`<span class="availability">${tr?'YAKINDA':'COMING SOON'}</span><p>${tr?'Yeni parçalar burada yerini alacak. Satışa açıldığında koleksiyonu bu sayfadan keşfedebileceksiniz.':'New pieces will find their place here. Discover the collection on this page when the shop opens.'}</p>`;
+ [4,2,1,3,5,6].forEach((asset,i)=>{
+  const n=i+1;
+  const detail=`<section class="shop-feature"><div class="shop-photo"><img src="/assets/models/HAWAN-0${asset}.png" alt="HAWAN No.${n}" style="object-fit:contain"></div><div class="shop-copy"><span class="eyebrow">HAWAN / ${tr?'KOLEKSİYON':'COLLECTION'}</span><h1>HAWAN No.${n}</h1><p>${tr?'Üç ayaklı ahşap havan tasarımı.':'A three-legged wooden mortar design.'}</p><p class="availability">${tr?'Satış yakında açılacak.':'Available soon.'}</p><button type="button" disabled>${tr?'Sepete Ekle':'Add to Cart'}</button><p><a class="text-link" href="${r.home}/#models">${tr?'Tüm tasarımlar':'All designs'} ↗</a></p></div></section>`;
+  write(`/${tr?'tr/urun':'en/product'}/hawan-no-${n}`,shell(l,'shop','HAWAN No.'+n,detail));
+ });
  if(commerce.provider==='shopier'){
    const u=new URL(commerce.shopierUrl);if(u.protocol!=='https:'||!(u.hostname==='shopier.com'||u.hostname.endsWith('.shopier.com')))throw Error('Use an official HTTPS Shopier store link');
    purchase=`<a class="solid-link" href="${esc(u.href)}">${tr?'Shopier mağazasına git':'Visit our Shopier store'} ↗</a>`;
