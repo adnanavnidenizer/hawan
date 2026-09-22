@@ -10,12 +10,16 @@ header .hc-header{left:auto;right:16px;top:10px}
 @media(min-width:768px){header > div:first-child{right:132px!important}header .hc-header{right:32px;top:18px}}
 /* Two shared header tiers. */
 .site-header{position:absolute;top:0;left:0;width:100%;z-index:50;display:block;padding:0;font-family:'DM Sans',sans-serif}
-.site-header .header-1{position:relative;right:auto!important;display:flex;justify-content:flex-end;align-items:center;gap:24px;height:44px;padding:0 20px;background:#c8c0b2}
+.site-header .header-1{position:relative;right:auto!important;display:flex;justify-content:flex-end;align-items:center;gap:24px;height:30px;padding:0 20px;background:#c8c0b2}
 .site-header .header-languages{display:flex;align-items:center;gap:8px;font-size:10px;letter-spacing:.15em;color:#625e55}
 .site-header .header-languages a{font-size:10px}
 .site-header .header-2{padding:16px;min-height:122px;display:flex;align-items:center}
-.site-header .hc-header{position:relative;inset:auto;display:flex;align-items:center;justify-content:center;width:32px;height:36px;padding:0;color:#f4f1e9}
+.site-header .hc-header{position:relative;inset:auto;display:flex;align-items:center;justify-content:center;width:32px;height:28px;padding:0;color:#f4f1e9}
 .site-header .hc-header [data-cart-count]{position:absolute;top:0;right:-5px;display:flex;align-items:center;justify-content:center;width:17px;min-width:17px;height:17px;border:0;border-radius:50%;background:#df772f;color:#fff;font-size:10px;font-weight:600;line-height:1;letter-spacing:0}
-.secondary-page{padding-top:166px}
-@media(min-width:640px){.site-header .header-2{min-height:132px}.secondary-page{padding-top:176px}}
-@media(min-width:768px){.site-header .header-1{padding:0 32px}.site-header .header-2{padding:16px 64px;min-height:142px}.secondary-page{padding-top:186px}}
+.secondary-page{padding-top:152px}
+@media(min-width:640px){.site-header .header-2{min-height:132px}.secondary-page{padding-top:162px}}
+@media(min-width:768px){.site-header .header-1{padding:0 32px}.site-header .header-2{padding:16px 64px;min-height:142px}.secondary-page{padding-top:172px}}
+
+.site-header .header-languages,.site-header .header-languages a,.site-header .header-languages span{color:#fff}
+.site-header .hc-header svg{width:22px;height:22px}
+.site-header .hc-header [data-cart-count][hidden]{display:none}
