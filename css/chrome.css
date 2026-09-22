@@ -12,7 +12,9 @@ footer a { font-size: 12px; }
  footer a { font-size: 9px; }
  footer p { font-size: 8.25px; }
 }
-/* A lighter warm stone footer, shared by every localized page. */
-footer.bg-stone-800{background-color:#c8c0b2;border-color:#c8c0b2;color:#625e55}
-footer.bg-stone-800 a{color:#4f4a42}
-footer.bg-stone-800 p{color:#625e55}
+/* Warm footer palette shared by every localized page. */
+footer.bg-stone-800{background-color:#806653;border-color:#806653;color:#fff}
+footer.bg-stone-800 a,footer.bg-stone-800 div{color:#fff}
+footer.bg-stone-800 p{color:#fff}
+
+footer.bg-stone-800 img[src$="/brand/hawan-logo.png"]{opacity:1;filter:brightness(0) invert(1)}
