@@ -159,8 +159,8 @@ html main section.model-section{flex-direction:column;justify-content:center;gap
 .model-grid{margin:0 auto}
 html main section.model-section .model-heading{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(30px,3vw,46px);font-weight:400;line-height:1.15;color:#625e55;text-align:center;margin:0}
 .model-card.model-large img{transform:scale(1.12);transform-origin:center bottom}
-.model-actions{display:flex;justify-content:center;gap:8px;margin-top:14px;font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:.02em}
-.model-actions a,.model-actions button{display:inline-flex;align-items:center;justify-content:center;min-height:38px;padding:9px 13px;border:1px solid #b4aa98;border-radius:0;text-decoration:none;font:inherit;transition:background .2s,color .2s}
+.model-actions{display:flex;flex-direction:column;justify-content:center;gap:8px;width:100%;max-width:180px;margin:14px auto 0;font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:.02em}
+.model-actions a,.model-actions button{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;min-height:38px;padding:9px 13px;border:1px solid #b4aa98;border-radius:0;text-decoration:none;font:inherit;transition:background .2s,color .2s}
 .model-link{color:#625e55;background:transparent}.model-link:hover{background:#625e55;color:#f4f1e9}
 .model-cart:disabled{color:#71695d;background:#e4ded2;border-color:#d0c7b8;cursor:not-allowed}
 @media(max-width:767px){.model-actions{flex-direction:column;gap:6px;font-size:10px}.model-actions a,.model-actions button{min-height:36px;padding:8px 5px}}
