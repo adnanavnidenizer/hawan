@@ -40,3 +40,15 @@ document.querySelectorAll('[data-waitlist]').forEach((form,index)=>{
   status.textContent=document.documentElement.lang==='tr'?'Bekleme listesi kaydı henüz açılmadı. E-posta adresiniz gönderilmedi veya kaydedilmedi.':'Waitlist registration is not open yet. Your email has not been sent or saved.';
  });
 });
+// Load only the video appropriate for the current screen orientation/layout.
+document.querySelectorAll('.motion-video').forEach(video=>{
+ const mobile=matchMedia('(max-width:767px)');
+ const load=()=>{
+  video.muted=true;
+  video.src=mobile.matches?video.dataset.mobile:video.dataset.desktop;
+  video.load();
+  video.play().catch(()=>{});
+ };
+ mobile.addEventListener('change',load);
+ load();
+});
