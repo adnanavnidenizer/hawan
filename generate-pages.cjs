@@ -6,7 +6,13 @@ const routes = {en:{home:'/en/home',gallery:'/en/gallery',shop:'/en/shop'},tr:{h
 const photos = ['1wpVdCLw_iMiFEyREtaeEy0HhczUU2c18.jpg','1xZmrzdA47ImJogL0_9y4oONL5ZL63JC2.jpg','1VjD_BFMPkHXkFycNZ8IbAW-c8QS_SNjY.jpg','183LoPhbVaj2wphYY42tAAU6a2JEcoRVZ.jpg','1IdNl7Vp9sc0JYws6citq-qkWRi6dOmtd.jpg','1TDgyUIODFPQf9gK32z_xED77rc1uJJvT.jpg'];
 const logo='/assets/images/1z_ej3UIdM4Awa6kx_7ytjLjuUO9AGCMt.png';
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-function write(url,html){const dir=path.join(root,url);fs.mkdirSync(dir,{recursive:true});fs.writeFileSync(path.join(dir,'index.html'),html);}
+function write(url,html){
+ const tr=html.includes('lang="tr"');
+ if(!html.includes('/js/cart.js'))html=html.replace('</head>','<link rel="stylesheet" href="/css/cart.css"><script defer src="/js/cart.js"></script></head>');
+ if(!html.includes('data-cart-open'))html=html.replace('</header>',`<button class="hc-header" type="button" data-cart-open>${tr?'SEPET':'CART'} <span data-cart-count>0</span></button></header>`);
+ html=html.replace(/(<button class="model-cart" type="button") disabled title="[^"]*"/g,'$1');
+ const dir=path.join(root,url);fs.mkdirSync(dir,{recursive:true});fs.writeFileSync(path.join(dir,'index.html'),html);
+}
 function alternates(type){return Object.keys(routes).map(l=>`<link rel="alternate" hreflang="${l}" href="${routes[l][type]}">`).join('');}
 function homeChrome(l,tag){
  const html=fs.readFileSync(path.join(root,routes[l].home,'index.html'),'utf8');
@@ -40,7 +46,7 @@ for(const l of ['en','tr']){
   const materials=tr?['Zeytin','Ceviz','Selvi','Kiraz']:['Olive','Walnut','Cypress','Cherry'];
   const materialValues=['olive','walnut','cypress','cherry'];
   const options=`<div class="product-options"><fieldset><legend>${tr?'Malzeme Seçimi':'Material Selection'}</legend><div class="option-list">${materials.map((label,j)=>`<label class="product-option"><input type="radio" name="material" value="${materialValues[j]}"><span>${label}</span></label>`).join('')}</div></fieldset><div class="size-preference"><label for="product-size">${tr?'Boyut Tercihi':'Size Preference'}</label><div class="size-select-wrap"><select id="product-size" name="size" aria-describedby="size-note" required>${Array.from({length:9},(_,j)=>j+17).map(size=>`<option value="${size}"${size===17?' selected':""}>${size} cm</option>`).join('')}</select></div></div><p id="size-note" class="size-note">${tr?'Ürünler tam yuvarlak olmayan organik formlara sahiptir. Belirtilen boyutlar yaklaşık ölçülerdir; ölçüm yönüne göre küçük farklılıklar olabilir.':'The products have organic shapes and are not perfectly round. Sizes are approximate and may vary slightly depending on the direction of measurement.'}</p></div>`;
-  const detail=`<section class="shop-feature product-detail"><div class="shop-photo"><img src="/assets/models/HAWAN-0${asset}.png" alt="HAWAN No.${n}" style="object-fit:contain"></div><div class="shop-copy"><span class="eyebrow">HAWAN / ${tr?'KOLEKSİYON':'COLLECTION'}</span><h1>HAWAN No.${n}</h1><p>${tr?'Üç ayaklı ahşap havan tasarımı.':'A three-legged wooden mortar design.'}</p><p class="availability">${tr?'Satış yakında açılacak.':'Available soon.'}</p><button type="button" disabled>${tr?'Sepete Ekle':'Add to Cart'}</button><p><a class="text-link" href="${r.shop}/">${tr?'Tüm tasarımlar':'All designs'} ↗</a></p></div></section>`;
+  const detail=`<section class="shop-feature product-detail" data-product="${n}"><div class="shop-photo"><img src="/assets/models/HAWAN-0${asset}.png" alt="HAWAN No.${n}" style="object-fit:contain"></div><div class="shop-copy"><span class="eyebrow">HAWAN / ${tr?'KOLEKSİYON':'COLLECTION'}</span><h1>HAWAN No.${n}</h1><p>${tr?'Üç ayaklı ahşap havan tasarımı.':'A three-legged wooden mortar design.'}</p><p class="availability">${tr?'Satış yakında açılacak.':'Available soon.'}</p><button type="button" data-product-add>${tr?'Sepete Ekle':'Add to Cart'}</button><p><a class="text-link" href="${r.shop}/">${tr?'Tüm tasarımlar':'All designs'} ↗</a></p></div></section>`;
   write(`/${tr?'tr/urun':'en/product'}/hawan-no-${n}`,shell(l,'shop','HAWAN No.'+n,detail.replace('<p class="availability">',options+'<p class="availability">')).replace('</head>','<link rel="stylesheet" href="/css/store.css"></head>'));
  });
  if(commerce.provider==='shopier'){
@@ -54,5 +60,9 @@ for(const l of ['en','tr']){
  const collection=modelSection.replace('class="model-section snap-target"','class="store-collection"').replace(/<h2 class="model-heading">[\s\S]*?<\/h2>/,'');
  const shop='<section class="store-intro"><span class="eyebrow">HAWAN / '+(tr?'MAĞAZA':'SHOP')+'</span><h1>'+(tr?'Tasarımını Seç...':'Choose Your Design...')+'</h1><p>'+(tr?'Doğal ahşap, üç ayaklı formlar. Yaşam alanına eşlik edecek tasarımı keşfet.':'Natural wood, three-legged forms. Discover a design to accompany your everyday life.')+'</p></section>'+collection+'<section class="store-availability"><div id="commerce-mount" data-provider="'+commerce.provider+'">'+purchase+'</div></section>';
  write(r.shop,shell(l,'shop',tr?'Mağaza':'Shop',shop).replace('</head>','<link rel="stylesheet" href="/css/store.css"></head>'));
+
+ const cartPath=tr?'/tr/sepet':'/en/cart';
+ const cartHTML=shell(l,'shop',tr?'Sepetin':'Your Cart','<section class="hc hc-page" data-cart-page></section>').replace(/<link rel="alternate"[^>]*>/g,'').replace('</head>','<link rel="alternate" hreflang="tr" href="/tr/sepet/"><link rel="alternate" hreflang="en" href="/en/cart/"></head>').replace('href="/en/shop"','href="/en/cart/"').replace('href="/tr/magaza"','href="/tr/sepet/"');
+ write(cartPath,cartHTML);
 
 }
