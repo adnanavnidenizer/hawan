@@ -56,3 +56,5 @@
 .gallery-page-heading{padding:64px 24px 0;text-align:center}
 .gallery-page-heading h1.eyebrow{font-family:var(--sans);font-size:9px;line-height:1.5;font-weight:400;letter-spacing:.24em;margin:0}
 @media(max-width:767px){.gallery-page-heading{padding-top:40px}}
+/* Keep gallery and store copy explicitly centered in both languages. */
+.gallery-page-heading .eyebrow,.store-intro :is(.eyebrow,h1,p),.store-categories a,.store-collection :is(h2,figcaption,.model-actions a,.model-actions button),.store-category-empty :is(h2,p){text-align:center}
