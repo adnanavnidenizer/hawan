@@ -191,3 +191,7 @@ html main section.model-section{--models-space:28px;height:auto;min-height:0!imp
  .scene-organic .photo-copy,.scene-pleasure .photo-copy,
  .scene-organic .photo-copy :is(span,h1,h2,p),.scene-pleasure .photo-copy :is(span,h1,h2,p){color:#aa927b}
 }
+@media(min-width:768px){
+ .scene-texture .photo-copy :is(span,h2,p){color:#a86c12}
+ .scene-texture .photo-copy p{font-weight:400}
+}
