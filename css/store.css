@@ -18,3 +18,10 @@
 .product-option input:focus-visible+span{outline:2px solid #735536;outline-offset:3px}
 .product-option:hover span{border-color:#625e55}
 .product-options .size-note{font-size:12px;line-height:1.7;color:#71695d;max-width:48ch}
+.size-preference{margin-bottom:22px}
+.size-preference>label{display:block;margin-bottom:12px;font-size:13px;letter-spacing:.04em}
+.size-select-wrap{position:relative;max-width:320px}
+.size-select-wrap::after{content:'';position:absolute;right:17px;top:18px;width:7px;height:7px;border-right:1px solid #625e55;border-bottom:1px solid #625e55;transform:rotate(45deg);pointer-events:none}
+.size-select-wrap select{appearance:none;display:block;width:100%;min-height:46px;padding:12px 42px 12px 14px;border:1px solid #b4aa98;border-radius:0;background:#f4f1e9;color:#625e55;font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer}
+.size-select-wrap select:hover{border-color:#625e55}
+.size-select-wrap select:focus-visible{outline:2px solid #735536;outline-offset:3px}
