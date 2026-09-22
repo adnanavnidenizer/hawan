@@ -26,3 +26,12 @@
 .size-select-wrap select:hover{border-color:#625e55}
 .size-select-wrap select:focus-visible{outline:2px solid #735536;outline-offset:3px}
 .product-detail .shop-photo img{transform:translateY(-28px)}
+.store-categories{display:flex;justify-content:center;flex-wrap:wrap;gap:16px 36px;margin:24px auto 44px;padding:0 24px}
+.store-categories a{font-size:12px;letter-spacing:.06em;padding:10px 0;border-bottom:1px solid #b4aa98}
+.store-categories a:hover{color:#735536;border-color:#735536}
+.store-category-heading{font-size:clamp(30px,3vw,42px);text-align:center;margin:0 0 36px}
+.store-collection,.store-category-empty{scroll-margin-top:28px}
+.store-category-empty{margin:0 8%;padding:48px 24px 64px;border-top:1px solid #d3ccbd;text-align:center}
+.store-category-empty .store-category-heading{margin-bottom:18px}
+.store-category-empty p{font-size:11px;letter-spacing:.12em;color:#71695d}
+@media(max-width:767px){.store-categories{gap:12px 24px;margin-bottom:32px}.store-categories a{font-size:11px}.store-category-heading{margin-bottom:28px}.store-category-empty{margin:0 5%;padding:36px 16px 44px}}

@@ -57,7 +57,11 @@ for(const l of ['en','tr']){
    purchase=fs.readFileSync(p,'utf8');
  } else if(commerce.provider!=='coming-soon')throw Error('Unknown commerce provider');
  const modelSection=home.match(/<section id="models"[\s\S]*?<\/section>/)[0];
- const collection=modelSection.replace('class="model-section snap-target"','class="store-collection"').replace(/<h2 class="model-heading">[\s\S]*?<\/h2>/,'');
+ const categoryNames=tr?['Havanlar','Tokmaklar','Diğer Ürünler']:['Mortars','Pestles','Other Products'];
+ const categoryIds=tr?['havanlar','tokmaklar','diger-urunler']:['mortars','pestles','other-products'];
+ const categoryNav=`<nav class="store-categories" aria-label="${tr?'Ürün kategorileri':'Product categories'}">${categoryNames.map((name,i)=>`<a href="#${categoryIds[i]}">${name}</a>`).join('')}</nav>`;
+ const mortars=modelSection.replace('id="models"',`id="${categoryIds[0]}"`).replace('class="model-section snap-target"','class="store-collection"').replace(/aria-label="[^"]*"/,`aria-labelledby="category-mortars"`).replace(/<h2 class="model-heading">[\s\S]*?<\/h2>/,`<h2 id="category-mortars" class="store-category-heading">${categoryNames[0]}</h2>`);
+ const collection=categoryNav+mortars+categoryNames.slice(1).map((name,i)=>`<section id="${categoryIds[i+1]}" class="store-category-empty" aria-labelledby="category-${i+1}"><h2 id="category-${i+1}" class="store-category-heading">${name}</h2><p>${tr?'Yakında':'Coming soon'}</p></section>`).join('');
  const shop='<section class="store-intro"><span class="eyebrow">HAWAN / '+(tr?'MAĞAZA':'SHOP')+'</span><h1>'+(tr?'Tasarımını Seç...':'Choose Your Design...')+'</h1><p>'+(tr?'Doğal ahşap, üç ayaklı formlar. Yaşam alanına eşlik edecek tasarımı keşfet.':'Natural wood, three-legged forms. Discover a design to accompany your everyday life.')+'</p></section>'+collection+'<section class="store-availability"><div id="commerce-mount" data-provider="'+commerce.provider+'">'+purchase+'</div></section>';
  write(r.shop,shell(l,'shop',tr?'Mağaza':'Shop',shop).replace('</head>','<link rel="stylesheet" href="/css/store.css"></head>'));
 
