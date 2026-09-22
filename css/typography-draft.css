@@ -187,3 +187,7 @@ html main section.model-section{--models-space:28px;height:auto;min-height:0!imp
  .scene-hero #waitlist.hero-store-action{top:calc(100cqw * 1600 / 788 * .88 - 18px);bottom:auto;height:auto;padding:0;transform:translateY(-50%);justify-content:center}
  main section{margin-top:0;margin-bottom:0}
 }
+@media(max-width:767px){
+ .scene-organic .photo-copy,.scene-pleasure .photo-copy,
+ .scene-organic .photo-copy :is(span,h1,h2,p),.scene-pleasure .photo-copy :is(span,h1,h2,p){color:#aa927b}
+}
