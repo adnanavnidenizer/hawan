@@ -167,9 +167,9 @@ html main section.model-section .model-heading{font-family:'Cormorant Garamond',
 
 /* A single, descriptive path from the hero to the collection. */
 .scene-hero .hero-store-action{display:flex;justify-content:flex-start}
-.scene-hero .hero-store-cta{display:inline-flex;align-items:center;justify-content:center;gap:20px;min-height:48px;padding:14px 24px;background:#6b645e;color:#f4f1e9;border:1px solid #6b645e;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;line-height:1.4;letter-spacing:.06em;text-decoration:none;transition:background-color .2s,color .2s}
-.scene-hero .hero-store-cta:hover{background:#514b46;border-color:#514b46}
-.scene-hero .hero-store-cta:focus-visible{outline:2px solid #6b645e;outline-offset:4px}
+.scene-hero .hero-store-cta{display:inline-flex;align-items:center;justify-content:center;gap:20px;min-height:48px;padding:14px 24px;background:#806653;color:#f4f1e9;border:1px solid #806653;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;line-height:1.4;letter-spacing:.06em;text-decoration:none;transition:background-color .2s,color .2s}
+.scene-hero .hero-store-cta:hover{background:#6c5443;border-color:#6c5443}
+.scene-hero .hero-store-cta:focus-visible{outline:2px solid #806653;outline-offset:4px}
 .scene-hero .hero-store-cta svg{flex-shrink:0}
 @media(max-width:767px){.scene-hero .hero-store-action{justify-content:center;padding-bottom:24px}.scene-hero .hero-store-cta{padding:13px 20px;font-size:12px}}
 @media(prefers-reduced-motion:reduce){.scene-hero .hero-store-cta{transition:none}}
