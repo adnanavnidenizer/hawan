@@ -2,12 +2,13 @@ const fs = require('node:fs');
 const path = require('node:path');
 const root = __dirname;
 const commerce = require('./commerce.json');
-const routes = {en:{home:'/en/home',gallery:'/en/gallery',shop:'/en/shop'},tr:{home:'/tr/ana-sayfa',gallery:'/tr/galeri',shop:'/tr/magaza'}};
+const routes = {en:{home:'/en/home',gallery:'/en/gallery',shop:'/en/shop',contact:'/en/contact'},tr:{home:'/tr/ana-sayfa',gallery:'/tr/galeri',shop:'/tr/magaza',contact:'/tr/iletisim'}};
 const photos = ['1wpVdCLw_iMiFEyREtaeEy0HhczUU2c18.jpg','1xZmrzdA47ImJogL0_9y4oONL5ZL63JC2.jpg','1VjD_BFMPkHXkFycNZ8IbAW-c8QS_SNjY.jpg','183LoPhbVaj2wphYY42tAAU6a2JEcoRVZ.jpg','1IdNl7Vp9sc0JYws6citq-qkWRi6dOmtd.jpg','1TDgyUIODFPQf9gK32z_xED77rc1uJJvT.jpg'];
 const logo='/assets/brand/hawan-logo.png';
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function write(url,html){
- const tr=html.includes('lang="tr"');
+ const tr=/<html\b[^>]*\slang="tr"/.test(html);
+ html=html.replace(/href="#"([^>]*>)(Contact|İletişim)<\/a>/gi,(_,rest,label)=>'href="'+(tr?'/tr/iletisim/':'/en/contact/')+'"'+rest+label+'</a>');
  // Match the hero text exactly while preserving the PNG's original alpha and geometry.
  if(!html.includes('id="hawan-logo-color"'))html=html.replace(/<body\b[^>]*>/,body=>body+'<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><filter id="hawan-logo-color" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0.4196078431 0 0 0 0 0.3921568627 0 0 0 0 0.3686274510 0 0 0 1 0"/></filter></defs></svg>');
  if(!html.includes('/js/cart.js'))html=html.replace('</head>','<link rel="stylesheet" href="/css/cart.css"><script defer src="/js/cart.js"></script></head>');
@@ -72,6 +73,11 @@ for(const l of ['en','tr']){
  const shop='<section class="store-intro"><span class="eyebrow">'+(tr?'MAĞAZA':'STORE')+'</span><h1>'+(tr?'Tasarımını Seç...':'Choose Your Design...')+'</h1><p>'+(tr?'Doğal ahşap, üç ayaklı formlar.<br>Yaşam alanına eşlik edecek tasarımı keşfet.':'Natural wood, three-legged forms.<br>Discover a design to accompany your everyday life.')+'</p></section>'+collection+(commerce.provider==='coming-soon'?'':'<section class="store-availability"><div id="commerce-mount" data-provider="'+commerce.provider+'">'+purchase+'</div></section>');
  write(r.shop,shell(l,'shop',tr?'Mağaza':'Store',shop).replace('</head>','<link rel="stylesheet" href="/css/store.css"></head>'));
 
+ const contactCopy=tr?{
+ label:'İLETİŞİM',title:'Bir sohbetle başlar.',intro:'Bir tasarım hakkında merak ettiklerin, ahşap seçimin veya özel bir fikrin varsa seni dinlemek isteriz.',eyebrow:'HAWAN İLE İLETİŞİM',heading:'Aklındaki parçayı konuşalım.',body:'İlgilendiğin modeli, düşündüğün ağacı ve yaklaşık boyutu paylaşabilirsin. Birlikte, günlük yaşamına eşlik edecek parçanın ayrıntılarını keşfedelim.',topics:['Ürünler ve malzemeler','Özel üretim fikirleri','İşbirlikleri'],descriptions:['Form, ahşap ve ölçü seçeneklerini keşfet.','Aklındaki kullanım alanını ve beklentilerini paylaş.','Projeler, yaratıcı ortaklıklar ve diğer sorular.'],note:'İletişim bilgileri yakında burada paylaşılacak.',link:'Koleksiyonu Keşfet'
+ }:{label:'CONTACT',title:'It starts with a conversation.',intro:'A question about a design, a choice of wood, or an idea of your own. We would love to hear it.',eyebrow:'GET IN TOUCH WITH HAWAN',heading:'Let’s talk about your piece.',body:'Share the model you have in mind, your preferred wood and an approximate size. Together, we can explore the details of a piece that belongs in your everyday life.',topics:['Products & materials','Bespoke ideas','Collaborations'],descriptions:['Explore forms, wood choices and dimensions.','Tell us about your space and what you have in mind.','Projects, creative partnerships and other questions.'],note:'Contact details will be shared here soon.',link:'Explore the Collection'};
+ const contact='<div class="contact-band">'+contactCopy.label+'</div><section class="contact-intro"><h1>'+contactCopy.title+'</h1><p>'+contactCopy.intro+'</p></section><section class="contact-layout"><div class="contact-image"><img src="/assets/images/'+photos[0]+'" alt="'+(tr?'HAWAN ahşap havan ve tokmak':'HAWAN wooden mortar and pestle')+'"></div><div class="contact-copy"><span class="eyebrow">'+contactCopy.eyebrow+'</span><h2>'+contactCopy.heading+'</h2><p>'+contactCopy.body+'</p><div class="contact-topics">'+contactCopy.topics.map((t,i)=>'<div><h3>'+t+'</h3><p>'+contactCopy.descriptions[i]+'</p></div>').join('')+'</div><a class="contact-email" href="mailto:adnanavni@hawan.co">adnanavni@hawan.co <span aria-hidden="true">↗</span></a><a class="contact-collection" href="'+r.shop+'">'+contactCopy.link+' <span aria-hidden="true">→</span></a></div></section>';
+ write(r.contact,shell(l,'contact',tr?'İletişim':'Contact',contact).replace('</head>','<link rel="stylesheet" href="/css/contact.css"></head>'));
  const cartPath=tr?'/tr/sepet':'/en/cart';
  const cartHTML=shell(l,'shop',tr?'Sepetin':'Your Cart','<section class="hc hc-page" data-cart-page></section>').replace(/<link rel="alternate"[^>]*>/g,'').replace('</head>','<link rel="alternate" hreflang="tr" href="/tr/sepet/"><link rel="alternate" hreflang="en" href="/en/cart/"></head>').replace('href="/en/shop"','href="/en/cart/"').replace('href="/tr/magaza"','href="/tr/sepet/"');
  write(cartPath,cartHTML);

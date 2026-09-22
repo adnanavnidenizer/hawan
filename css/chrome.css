@@ -13,11 +13,11 @@ footer a { font-size: 12px; }
  footer p { font-size: 8.25px; }
 }
 /* Warm footer palette shared by every localized page. */
-footer.bg-stone-800{background-color:#806653;border-color:#806653;color:#fff}
-footer.bg-stone-800 a,footer.bg-stone-800 div{color:#fff}
-footer.bg-stone-800 p{color:#fff}
+footer.bg-stone-800{background-color:#806653;border-color:#806653;color:#6b645e}
+footer.bg-stone-800 a,footer.bg-stone-800 div{color:#6b645e}
+footer.bg-stone-800 p{color:#6b645e}
 
-footer.bg-stone-800 img[src$="/brand/hawan-logo.png"]{opacity:1;filter:brightness(0) invert(1)}
+footer.bg-stone-800 img[src$="/brand/hawan-logo.png"]{opacity:1;filter:url(#hawan-logo-color)}
 
 /* Repeat the preceding section's subtle cross pattern without tinting footer content. */
 footer.bg-stone-800{position:relative;isolation:isolate}
