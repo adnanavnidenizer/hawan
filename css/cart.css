@@ -10,7 +10,7 @@ header .hc-header{left:auto;right:16px;top:10px}
 @media(min-width:768px){header > div:first-child{right:132px!important}header .hc-header{right:32px;top:18px}}
 /* Two shared header tiers. */
 .site-header{position:absolute;top:0;left:0;width:100%;z-index:50;display:block;padding:0;font-family:'DM Sans',sans-serif}
-.site-header .header-1{position:relative;right:auto!important;display:flex;justify-content:flex-end;align-items:center;gap:24px;height:30px;padding:0 20px;background:#c8c0b2}
+.site-header .header-1{position:relative;right:auto!important;display:flex;justify-content:flex-end;align-items:center;gap:24px;height:30px;padding:0 20px;background:#6b645e}
 .site-header .header-languages{display:flex;align-items:center;gap:8px;font-size:10px;letter-spacing:.15em;color:#625e55}
 .site-header .header-languages a{font-size:10px}
 .site-header .header-2{padding:16px;min-height:122px;display:flex;align-items:center}
@@ -24,3 +24,4 @@ header .hc-header{left:auto;right:16px;top:10px}
 .site-header .hc-header svg{width:22px;height:22px}
 .site-header .hc-header [data-cart-count][hidden]{display:none}
 .site-header .header-languages{margin-right:auto}
+.site-header img[src$="/brand/hawan-logo.png"],footer img[src$="/brand/hawan-logo.png"]{opacity:1;filter:url(#hawan-logo-color)}

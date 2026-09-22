@@ -8,6 +8,8 @@ const logo='/assets/brand/hawan-logo.png';
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function write(url,html){
  const tr=html.includes('lang="tr"');
+ // Match the hero text exactly while preserving the PNG's original alpha and geometry.
+ if(!html.includes('id="hawan-logo-color"'))html=html.replace(/<body\b[^>]*>/,body=>body+'<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><filter id="hawan-logo-color" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0.4196078431 0 0 0 0 0.3921568627 0 0 0 0 0.3686274510 0 0 0 1 0"/></filter></defs></svg>');
  if(!html.includes('/js/cart.js'))html=html.replace('</head>','<link rel="stylesheet" href="/css/cart.css"><script defer src="/js/cart.js"></script></head>');
  if(!html.includes('class="header-1"'))html=html.replace(/<header\b[^>]*>([\s\S]*?)<\/header>/,(_,inner)=>{
   const languages=inner.match(/<div\b[^>]*>[\s\S]*?<\/div>/)[0];
