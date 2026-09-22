@@ -46,6 +46,12 @@ for(const l of ['en','tr']){
  write(r.gallery,shell(l,'gallery',tr?'Galeri':'Gallery',gallery));
  const homeGrid='<section id="philosophy" class="home-gallery snap-target" aria-label="'+(tr?'Galeri':'Gallery')+'"><div class="thumbnail-grid">'+galleryFiles.map((f,i)=>'<button class="gallery-thumb" onclick="openLightbox(this.firstElementChild.src)" aria-label="'+esc(names[i])+'"><img src="/assets/images/'+f+'" alt="'+esc(names[i])+'" loading="lazy"></button>').join('')+'</div></section>';
  home=home.replace(/<section id="philosophy"[\s\S]*?<\/section>/,homeGrid).replace('</head>','<link rel="stylesheet" href="/css/home-gallery.css"></head>');
+ // Quote introduces section four; gallery replaces Process, video takes its former slot.
+ const motionSection=home.match(/<section id="motion"[\s\S]*?<\/section>/)[0];
+ const quotationSection=home.match(/<section class="quotation-section[\s\S]*?<\/section>/)[0];
+ home=home.replace(motionSection,quotationSection)
+   .replace(homeGrid,motionSection)
+   .replace(/<section id="craft"[\s\S]*?<\/section>/,homeGrid);
  write(r.home,home);
 
  let purchase=`<span class="availability">${tr?'YAKINDA':'COMING SOON'}</span><p>${tr?'Yeni parçalar burada yerini alacak. Satışa açıldığında koleksiyonu bu sayfadan keşfedebileceksiniz.':'New pieces will find their place here. Discover the collection on this page when the shop opens.'}</p>`;
