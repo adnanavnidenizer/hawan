@@ -7,7 +7,7 @@
       const hasText = [...el.childNodes].some(node => node.nodeType === 3 && node.textContent.trim());
       if (!hasText && !el.matches('input,textarea,select')) continue;
       const color = getComputedStyle(el).color;
-      const mode = color === 'rgb(68, 64, 60)' ? 'ink' : 'outline';
+      const mode = /^rgba?\(255[, ]+255[, ]+255(?:[, /]+[\d.]+)?\)$/.test(color) ? 'white' : 'none';
       if (el.dataset.textContour !== mode) el.dataset.textContour = mode;
     }
   }

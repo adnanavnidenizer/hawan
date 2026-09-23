@@ -8,7 +8,8 @@ function stepLightbox(direction){
  if(!homeGalleryImages.length)return;
  lightboxIndex=(lightboxIndex+direction+homeGalleryImages.length)%homeGalleryImages.length;
  const selected=homeGalleryImages[lightboxIndex];
- galleryImage.src=selected.dataset.viewer||selected.src;galleryImage.alt=selected.alt;
+ galleryImage.removeAttribute('srcset');galleryImage.removeAttribute('sizes');
+ galleryImage.src=selected.dataset.original||selected.dataset.viewer;galleryImage.alt=selected.alt;
 }
 if(lightbox&&homeGalleryImages.length){
  const tr=document.documentElement.lang==='tr';
@@ -21,10 +22,11 @@ if(lightbox&&homeGalleryImages.length){
  }
 }
 function openLightbox(src){
- lightboxIndex=Math.max(0,homeGalleryImages.findIndex(img=>(img.dataset.viewer||img.src)===src));
+ lightboxIndex=Math.max(0,homeGalleryImages.findIndex(img=>new URL(img.dataset.original||img.dataset.viewer,location.href).href===new URL(src,location.href).href));
  galleryImage.alt=homeGalleryImages[lightboxIndex]?.alt||'Gallery Image';
  previousFocus=document.activeElement;
- galleryImage.src=src;
+ galleryImage.removeAttribute('srcset');galleryImage.removeAttribute('sizes');
+ galleryImage.src=homeGalleryImages[lightboxIndex]?.dataset.original||src;
  lightbox.classList.remove('opacity-0','pointer-events-none');
  lightbox.setAttribute('aria-hidden','false');
  document.body.style.overflow='hidden';
