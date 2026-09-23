@@ -1,6 +1,6 @@
 # Gallery delivery assets
 
-Both home and gallery grids share 320/640px square WebP thumbnails, responsive srcset, lazy loading and asynchronous decoding. The viewer uses a separate aspect-preserving WebP capped at 1920px; it never enlarges a thumbnail. Original photos remain in assets/images unchanged.
+Both home and gallery grids share 320/640px square WebP thumbnails, responsive srcset, lazy loading and asynchronous decoding. Both viewers load the original full-resolution photo from assets/images on selection. Only grid thumbnails are reduced. Previously generated viewer WebPs are no longer referenced by the site. Original photos remain in assets/images unchanged.
 
 Asset filenames use source content hashes and receive a one-year immutable cache header. Files are committed so Cloudflare builds need no image processing dependencies.
 
