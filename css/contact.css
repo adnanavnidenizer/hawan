@@ -13,6 +13,9 @@ html main section.home-contact{height:auto;min-height:var(--section-height);padd
 .home-contact-copy h2{font:400 clamp(32px,4vw,52px)/1.12 'Cormorant Garamond',serif;margin:0 0 24px}
 .home-contact-copy h3{font:400 clamp(24px,2.6vw,34px)/1.2 'Cormorant Garamond',serif;margin:28px 0 12px}
 .home-contact-copy p{font:300 clamp(13px,1.2vw,16px)/1.8 'DM Sans',sans-serif}
-.home-contact .contact-compose{margin:0 auto;padding:32px 0 0;border-color:rgba(244,241,233,.25)}
+.home-contact .contact-compose{margin:0 auto;padding:0;border-top:0}
 .home-contact .contact-compose>.eyebrow{font-size:10px;letter-spacing:.2em}
 .home-contact .contact-fallback{color:inherit}
+
+.home-contact .contact-compose h2{margin-bottom:18px}
+.home-contact-intro{max-width:720px;margin:0 0 32px;font:300 clamp(13px,1.2vw,16px)/1.8 'DM Sans',sans-serif}
