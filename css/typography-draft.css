@@ -191,7 +191,7 @@ html main section.model-section{--models-space:28px;height:auto;min-height:0!imp
 .scene-pleasure .photo-copy,.scene-pleasure .photo-copy :is(span,h1,h2,p){color:#fff}
 @media(max-width:767px){
  .scene-organic .photo-copy,.scene-organic .photo-copy :is(span,h1,h2,p){color:#36332f}
- .scene-pleasure .photo-copy,.scene-pleasure .photo-copy :is(span,h1,h2,p){color:#f2f0eb}
+ .scene-pleasure .photo-copy,.scene-pleasure .photo-copy :is(span,h1,h2,p){color:#df772f}
 }
 @media(min-width:768px){
  .scene-organic .photo-copy,.scene-organic .photo-copy :is(span,h1,h2,p){color:#fff}
