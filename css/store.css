@@ -4,7 +4,7 @@
 @media(max-width:767px){.secondary-page .store-intro>.eyebrow{margin-bottom:32px}}
 .store-collection{padding:20px 8% 80px}.store-collection .model-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:52px 6%;max-width:1200px;margin:auto}
 .store-collection .model-card{min-width:0;margin:0;text-align:center}.store-collection .model-card img{width:100%;height:320px;object-fit:contain;object-position:center bottom}.store-collection .model-small img{transform:scale(.9);transform-origin:center bottom}.store-collection .model-large img{transform:scale(1.12);transform-origin:center bottom}
-.store-collection figcaption{display:block;margin:4px 0 0;font-size:clamp(15px,1.25vw,18px);letter-spacing:.16em}
+.store-collection figcaption{font-family:'Cormorant Garamond',serif;font-weight:400;display:block;margin:4px 0 0;font-size:clamp(15px,1.25vw,18px);letter-spacing:.16em}
 .store-collection .model-actions{display:flex;flex-direction:column;gap:8px;width:100%;max-width:180px;margin:14px auto 0}
 .store-collection .model-actions a,.store-collection button,.product-detail button{display:inline-flex;justify-content:center;align-items:center;min-height:38px;padding:9px 13px;border:1px solid #b4aa98;background:transparent;font-size:11px;white-space:nowrap;transition:background .2s,color .2s}
 .store-collection .model-link:hover{background:#44403c;color:#f4f1e9}.store-collection button:disabled,.product-detail button:disabled{color:#71695d;background:#e4ded2;border-color:#d0c7b8;cursor:not-allowed}

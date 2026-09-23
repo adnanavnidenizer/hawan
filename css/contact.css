@@ -4,3 +4,15 @@
 .contact-layout{margin-bottom:64px}.contact-compose{max-width:1100px;margin:0 auto 100px;padding:40px;border-top:1px solid #d6cec3}.contact-compose h2{font:400 clamp(32px,4vw,46px)/1.15 'Cormorant Garamond',serif;margin:16px 0 32px}.contact-compose label{display:block;font-size:12px;letter-spacing:.03em;margin-bottom:22px}.compose-row{display:grid;grid-template-columns:1fr 1fr;gap:24px}.contact-compose input,.contact-compose textarea{display:block;width:100%;margin-top:9px;padding:14px 16px;background:#faf8f3;border:1px solid #c8beb1;border-radius:0;color:#514b46;font:400 15px/1.6 'DM Sans',sans-serif;box-sizing:border-box}.contact-compose textarea{resize:vertical;min-height:220px}.contact-compose :is(input,textarea,button):focus-visible{outline:2px solid #aa927b;outline-offset:3px}.compose-bottom{display:flex;align-items:center;justify-content:space-between;gap:28px}.compose-bottom p,.compose-status{max-width:480px;font-size:12px;line-height:1.7}.compose-bottom button{flex-shrink:0;min-height:48px;padding:14px 24px;background:#aa927b;color:#f4f1e9;border:1px solid #aa927b;font:400 12px 'DM Sans',sans-serif;cursor:pointer}.compose-bottom button:hover{background:#6c5443}.compose-bottom button span{margin-left:18px}@media(max-width:767px){.contact-compose{margin-bottom:64px;padding:32px 24px}.compose-row{grid-template-columns:1fr;gap:0}.compose-bottom{align-items:stretch;flex-direction:column;gap:12px}}
 
 .contact-honey{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.contact-verification{margin:12px 0 24px;max-width:100%}.contact-fallback{display:block;margin-top:16px;padding:8px 0;border:0;background:transparent;color:#6b645e;text-decoration:underline;cursor:pointer;font:inherit}.contact-fallback[hidden]{display:none}.compose-bottom button:disabled{opacity:.6;cursor:wait}
+
+/* Home contact reuses the original patterned background with an unconstrained form height. */
+html main section.home-contact{height:auto;min-height:var(--section-height);padding:clamp(48px,6vw,88px) 24px;color:#f4f1e9}
+.home-contact>.absolute{pointer-events:none}
+.home-contact-inner{position:relative;z-index:1;width:100%;max-width:1100px;margin:auto}
+.home-contact-copy{max-width:720px;margin:0 auto 40px;text-align:center}
+.home-contact-copy h2{font:400 clamp(32px,4vw,52px)/1.12 'Cormorant Garamond',serif;margin:0 0 24px}
+.home-contact-copy h3{font:400 clamp(24px,2.6vw,34px)/1.2 'Cormorant Garamond',serif;margin:28px 0 12px}
+.home-contact-copy p{font:300 clamp(13px,1.2vw,16px)/1.8 'DM Sans',sans-serif}
+.home-contact .contact-compose{margin:0 auto;padding:32px 0 0;border-color:rgba(244,241,233,.25)}
+.home-contact .contact-compose>.eyebrow{font-size:10px;letter-spacing:.2em}
+.home-contact .contact-fallback{color:inherit}

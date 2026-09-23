@@ -143,7 +143,7 @@ html main section.model-section {
 .model-card { min-width:0; margin:0; text-align:center; }
 .model-card img { display:block; width:100%; height:clamp(230px,32svh,360px); object-fit:contain; object-position:center bottom; }
 
-.model-card figcaption { margin-top:4px; font-family:'DM Sans',sans-serif; font-weight:400; font-size:clamp(15px,1.25vw,18px); letter-spacing:.16em; color:#44403c; }
+.model-card figcaption { margin-top:4px; font-family:'Cormorant Garamond',serif; font-weight:400; font-size:clamp(15px,1.25vw,18px); letter-spacing:.16em; color:#44403c; }
 @media(max-width:767px) {
  html main section.model-section { min-height:calc(100cqw * 1600 / 788) !important; padding:36px 5%; }
  .model-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px 6%; }
