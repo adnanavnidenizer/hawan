@@ -23,3 +23,6 @@ Qualified Turkish legal review is still required. The page is not a substitute f
 - Ministry legislation index: https://tuketici.ticaret.gov.tr/yayinlar/mevzuat-kanun-yonetmelik-teblig/6502-sayili-tuketicinin-korunmasi-mevzuati
 
 Verification: build and 286 existing-route local links passed; EN/TR pages, localized language switches, internal contents links, bold/italic assumptions and 390px overflow checked in browser; desktop reading layout checked at 1440px.
+
+## Launch update — 23 September 2026
+At the user's request, the published terms-content.cjs now contains only a bilingual temporary information page. Fictional commercial terms are archived in docs/terms-review-archive.cjs and excluded from the build. Checkout remains unavailable. The review requirements above apply before real sales terms and checkout are activated.
