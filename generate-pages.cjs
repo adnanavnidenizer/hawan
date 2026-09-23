@@ -16,6 +16,13 @@ const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'
 function write(url,html){
  html=html.replace('</head>','<link rel="stylesheet" href="/css/text-effects.css"><script defer src="/js/text-effects.js"></script></head>');
  const tr=/<html\b[^>]*\slang="tr"/.test(html);
+ const product=url.match(/^\/(en\/product|tr\/urun)\/hawan-no-(\d+)$/);
+ const pair=product?{en:'/en/product/hawan-no-'+product[2]+'/',tr:'/tr/urun/hawan-no-'+product[2]+'/'}:url==='/en/cart'||url==='/tr/sepet'?{en:'/en/cart/',tr:'/tr/sepet/'}:null;
+ if(pair){
+  html=html.replace(/<link rel="alternate"[^>]*>/g,'').replace('</head>',Object.entries(pair).map(([lang,href])=>`<link rel="alternate" hreflang="${lang}" href="${href}">`).join('')+'</head>');
+  html=html.replace(/(<div class="header-languages">)([\s\S]*?)(<\/div>)/,(_,open,links,close)=>open+links.replace(/href="[^"]*"([^>]*>)(EN|TR)<\/a>/g,(_,rest,lang)=>`href="${pair[lang.toLowerCase()]}"${rest}${lang}</a>`)+close);
+ }
+
  html=html.replace(/href="#"([^>]*>)(Contact|İletişim)<\/a>/gi,(_,rest,label)=>'href="'+(tr?'/tr/iletisim/':'/en/contact/')+'"'+rest+label+'</a>');
  html=html.replace(/href="#"([^>]*>)(Terms &amp; Conditions|Şartlar ve Koşullar)<\/a>/gi,(_,rest,label)=>'href="'+(tr?'/tr/sartlar-ve-kosullar/':'/en/terms-and-conditions/')+'"'+rest+label+'</a>');
  // Match the hero text exactly while preserving the PNG's original alpha and geometry.
@@ -28,6 +35,9 @@ function write(url,html){
   return `<header class="site-header"><div class="header-1">${links}<button class="hc-header" type="button" data-cart-open aria-label="${tr?'Sepet':'Cart'}">${icon}<span data-cart-count aria-hidden="true" hidden>0</span></button></div><div class="header-2">${inner.replace(languages,'')}</div></header>`;
  });
  html=html.replace(/(<button class="model-cart" type="button") disabled title="[^"]*"/g,'$1');
+ // Give search engines one stable production URL for each localized page.
+ html=html.replace(/<link rel="canonical"[^>]*>/g,'').replace('</head>',`<link rel="canonical" href="https://hawan.co${url}/"></head>`);
+ html=html.replace(/(<link rel="alternate"[^>]*href=")([^"]+)(")/g,(_,before,href,after)=>before+(href.startsWith('/')?'https://hawan.co'+href.replace(/\/?$/,'/'):href)+after);
  // Refresh cached styles and scripts whenever their content changes.
  html=html.replace(/(href|src)="(\/(?:css|js)\/[^"?]+\.(?:css|js))(?:\?[^" ]*)?"/g,(_,attr,asset)=>{
   const hash=require('node:crypto').createHash('sha256').update(fs.readFileSync(path.join(root,asset))).digest('hex').slice(0,12);
