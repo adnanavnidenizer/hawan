@@ -6,7 +6,7 @@ if (viewer) {
  function show(index) {
   current = (index + thumbs.length) % thumbs.length;
   const target = thumbs[current].querySelector('img');
-  image.src = target.src;
+  image.src = target.dataset.viewer || target.src;
   image.alt = target.alt;
   image.classList.toggle('is-logo', target.src.endsWith('.png'));
   thumbs.forEach((button, i) => button.setAttribute('aria-pressed', String(i === current)));

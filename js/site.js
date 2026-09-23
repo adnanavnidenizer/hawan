@@ -8,7 +8,7 @@ function stepLightbox(direction){
  if(!homeGalleryImages.length)return;
  lightboxIndex=(lightboxIndex+direction+homeGalleryImages.length)%homeGalleryImages.length;
  const selected=homeGalleryImages[lightboxIndex];
- galleryImage.src=selected.src;galleryImage.alt=selected.alt;
+ galleryImage.src=selected.dataset.viewer||selected.src;galleryImage.alt=selected.alt;
 }
 if(lightbox&&homeGalleryImages.length){
  const tr=document.documentElement.lang==='tr';
@@ -21,7 +21,7 @@ if(lightbox&&homeGalleryImages.length){
  }
 }
 function openLightbox(src){
- lightboxIndex=Math.max(0,homeGalleryImages.findIndex(img=>img.src===src));
+ lightboxIndex=Math.max(0,homeGalleryImages.findIndex(img=>(img.dataset.viewer||img.src)===src));
  galleryImage.alt=homeGalleryImages[lightboxIndex]?.alt||'Gallery Image';
  previousFocus=document.activeElement;
  galleryImage.src=src;
