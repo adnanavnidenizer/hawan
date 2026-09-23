@@ -29,7 +29,7 @@ html main section span.block,html .eyebrow,html .contact-band,html .hc-eyebrow{
  font-size:clamp(.5625rem,.5rem + .28vw,.75rem)!important;
  font-weight:500!important;line-height:1.5;letter-spacing:.14em!important;
 }
-.site-header .header-2 a{color:#aa927b}
+.site-header .header-2 a{color:#44403c}
 .site-header .header-2 a:not([aria-label]){font-size:clamp(.75rem,.7rem + .2vw,.875rem)}
 
 footer .footer-links{display:grid;grid-template-columns:repeat(2,max-content);justify-content:center;align-items:center;column-gap:32px;row-gap:16px;width:100%;text-align:center}footer .footer-links>a:last-child{grid-column:1 / -1;justify-self:center}
