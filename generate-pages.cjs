@@ -28,6 +28,11 @@ function write(url,html){
   return `<header class="site-header"><div class="header-1">${links}<button class="hc-header" type="button" data-cart-open aria-label="${tr?'Sepet':'Cart'}">${icon}<span data-cart-count aria-hidden="true" hidden>0</span></button></div><div class="header-2">${inner.replace(languages,'')}</div></header>`;
  });
  html=html.replace(/(<button class="model-cart" type="button") disabled title="[^"]*"/g,'$1');
+ // Refresh cached styles and scripts whenever their content changes.
+ html=html.replace(/(href|src)="(\/(?:css|js)\/[^"?]+\.(?:css|js))(?:\?[^" ]*)?"/g,(_,attr,asset)=>{
+  const hash=require('node:crypto').createHash('sha256').update(fs.readFileSync(path.join(root,asset))).digest('hex').slice(0,12);
+  return `${attr}="${asset}?v=${hash}"`;
+ });
  const dir=path.join(root,url);fs.mkdirSync(dir,{recursive:true});fs.writeFileSync(path.join(dir,'index.html'),html);
 }
 function alternates(type){return Object.keys(routes).map(l=>`<link rel="alternate" hreflang="${l}" href="${routes[l][type]}">`).join('');}
