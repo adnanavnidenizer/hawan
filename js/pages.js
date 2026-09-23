@@ -80,3 +80,23 @@ if (adaptiveGrid) {
  layoutGrid();
 }
 
+// Explore product detail at the pointer position without changing the page layout.
+for (const photo of document.querySelectorAll('.product-detail .shop-photo')) {
+ const image = photo.querySelector('img');
+ const reset = () => photo.classList.remove('is-zoomed');
+ const point = event => {
+  if (event.pointerType !== 'mouse') return;
+  const box = photo.getBoundingClientRect();
+  const x = Math.max(0, Math.min(100, (event.clientX - box.left) / box.width * 100));
+  const y = Math.max(0, Math.min(100, (event.clientY - box.top + 28) / image.clientHeight * 100));
+  photo.style.setProperty('--zoom-x', x + '%');
+  photo.style.setProperty('--zoom-y', y + '%');
+  photo.classList.add('is-zoomed');
+ };
+ photo.addEventListener('pointerenter', point);
+ photo.addEventListener('pointermove', point);
+ photo.addEventListener('pointerleave', reset);
+ photo.addEventListener('pointercancel', reset);
+
+ window.addEventListener('blur', reset);
+}

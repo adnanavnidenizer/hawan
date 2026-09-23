@@ -17,7 +17,7 @@
  .scene-utility h2 { font-size: clamp(44px, 4.4vw, 70px); }
  .scene-pleasure .photo-copy { left: 4%; top: 62%; transform: translateY(-50%); width: 40%; }
  .scene-pleasure h2 { font-size: clamp(46px, 4.8vw, 76px); }
- .scene-organic .photo-copy, .scene-pleasure .photo-copy { text-shadow: 0 2px 14px rgba(0,0,0,.35); }
+
 }
 @media (min-width: 768px) and (max-width: 1050px) {
  .photo-section .photo-copy { width: 40%; }
@@ -143,7 +143,7 @@ html main section.model-section {
 .model-card { min-width:0; margin:0; text-align:center; }
 .model-card img { display:block; width:100%; height:clamp(230px,32svh,360px); object-fit:contain; object-position:center bottom; }
 
-.model-card figcaption { margin-top:4px; font-family:'DM Sans',sans-serif; font-weight:400; font-size:13px; letter-spacing:.16em; color:#625e55; }
+.model-card figcaption { margin-top:4px; font-family:'DM Sans',sans-serif; font-weight:400; font-size:13px; letter-spacing:.16em; color:#44403c; }
 @media(max-width:767px) {
  html main section.model-section { min-height:calc(100cqw * 1600 / 788) !important; padding:36px 5%; }
  .model-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px 6%; }
@@ -157,11 +157,11 @@ html main section.model-section {
 .model-card.model-small img { transform:scale(.9); transform-origin:center bottom; }
 html main section.model-section{flex-direction:column;justify-content:center;gap:28px}
 .model-grid{margin:0 auto}
-html main section.model-section .model-heading{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(30px,3vw,46px);font-weight:400;line-height:1.15;color:#625e55;text-align:center;margin:0}
+html main section.model-section .model-heading{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(30px,3vw,46px);font-weight:400;line-height:1.15;color:#44403c;text-align:center;margin:0}
 .model-card.model-large img{transform:scale(1.12);transform-origin:center bottom}
 .model-actions{display:flex;flex-direction:column;justify-content:center;gap:8px;width:100%;max-width:180px;margin:14px auto 0;font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:.02em}
 .model-actions a,.model-actions button{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;min-height:38px;padding:9px 13px;border:1px solid #b4aa98;border-radius:0;text-decoration:none;font:inherit;transition:background .2s,color .2s}
-.model-link{color:#625e55;background:transparent}.model-link:hover{background:#625e55;color:#f4f1e9}
+.model-link{color:#44403c;background:transparent}.model-link:hover{background:#44403c;color:#f4f1e9}
 .model-cart:disabled{color:#71695d;background:#e4ded2;border-color:#d0c7b8;cursor:not-allowed}
 @media(max-width:767px){.model-actions{flex-direction:column;gap:6px;font-size:10px}.model-actions a,.model-actions button{min-height:36px;padding:8px 5px}}
 
@@ -184,14 +184,72 @@ html main section.model-section{--models-space:28px;height:auto;min-height:0!imp
 @media(max-width:767px){
  html main .photo-section:not(.scene-hero){height:calc(100cqw * 1600 / 900);min-height:calc(100cqw * 1600 / 900)!important}
  html main .photo-section.scene-pleasure{height:calc(100cqw * 1600 / 899);min-height:calc(100cqw * 1600 / 899)!important}
- .scene-hero #waitlist.hero-store-action{top:calc(100cqw * 1600 / 788 * .88 - 18px);bottom:auto;height:auto;padding:0;transform:translateY(-50%);justify-content:center}
+ .scene-hero #waitlist.hero-store-action{top:calc(100cqw * 1600 / 788 * .915 - 18px);bottom:auto;height:auto;padding:0;transform:translateY(-50%);justify-content:center}
  main section{margin-top:0;margin-bottom:0}
 }
+.scene-organic .photo-copy,.scene-organic .photo-copy :is(span,h1,h2,p){color:#44403c}
+.scene-pleasure .photo-copy,.scene-pleasure .photo-copy :is(span,h1,h2,p){color:#fff}
 @media(max-width:767px){
- .scene-organic .photo-copy,.scene-pleasure .photo-copy,
- .scene-organic .photo-copy :is(span,h1,h2,p),.scene-pleasure .photo-copy :is(span,h1,h2,p){color:#aa927b}
+ .scene-organic .photo-copy,.scene-organic .photo-copy :is(span,h1,h2,p){color:#36332f}
+ .scene-pleasure .photo-copy,.scene-pleasure .photo-copy :is(span,h1,h2,p){color:#f2f0eb}
 }
 @media(min-width:768px){
- .scene-texture .photo-copy :is(span,h2,p){color:#a86c12}
+ .scene-organic .photo-copy,.scene-organic .photo-copy :is(span,h1,h2,p){color:#fff}
+ .scene-texture .photo-copy :is(span,h2,p){color:#fff}
+ .scene-utility .photo-copy :is(span,h2,p){color:#6b645e}
  .scene-texture .photo-copy p{font-weight:400}
 }
+
+/* Shared neutral ink for the introductory photo copy. */
+.scene-hero .photo-copy > :is(span,h1,p){color:#44403c}
+
+
+/* One compact glyph shadow replaces the legacy text/filter combinations. */
+.photo-section .photo-copy{--photo-shadow:rgba(32,24,18,.78);text-shadow:none}
+.photo-section .photo-copy > :is(span,h1,h2,p){text-shadow:0 1.5px 4px var(--photo-shadow)!important;filter:none!important}
+.scene-hero .photo-copy{--photo-shadow:rgba(32,24,18,.3)}
+@media(min-width:768px){
+ .scene-texture .photo-copy{--photo-shadow:rgba(32,24,18,.65)}
+ .scene-utility .photo-copy{--photo-shadow:rgba(32,24,18,.3)}
+}
+@media(max-width:767px){
+ .scene-organic .photo-copy,.scene-pleasure .photo-copy{--photo-shadow:rgba(32,24,18,.65)}
+}
+
+/* Fluid photo typography with room for natural wrapping. */
+.photo-section{--copy-gap:clamp(10px,1.5vw,24px)}
+html main .photo-section .photo-copy :is(h1,h2){font-size:clamp(28px,3.825vw,61.5px)!important;margin-bottom:var(--copy-gap)}
+html main .photo-section .photo-copy>p{font-size:clamp(14px,1.05vw,17px)!important}
+.photo-section .photo-copy>span{margin-bottom:var(--copy-gap)}
+@media(min-width:768px){
+ html main .scene-hero{min-height:100svh!important}
+ .scene-hero .photo-copy{top:var(--hero-copy-center,calc(50% + 24px))}
+}
+@media(max-width:767px){
+ .photo-section{--photo-offset:0px;--photo-ratio:1.7777777778;--copy-fraction:.49;--copy-gap:clamp(10px,3vw,18px);background:#f4f1e9}
+ .scene-hero{--photo-ratio:2.0304568528}
+ .scene-organic{--copy-fraction:.64}
+ .scene-texture{--copy-fraction:.46}
+ .scene-pleasure{--photo-ratio:1.7797552836;--copy-fraction:.58}
+ html main .photo-section:not(.scene-hero),html main .photo-section.scene-hero,html main .photo-section.scene-pleasure{height:calc(100cqw * var(--photo-ratio));min-height:calc(100cqw * var(--photo-ratio))!important}
+ .photo-section>div:first-child{margin-top:0}
+ .photo-section .photo-copy{height:calc(100cqw * var(--photo-ratio) * var(--copy-fraction));padding:24px clamp(16px,5vw,32px)}
+ html main .photo-section .photo-copy :is(h1,h2){font-size:clamp(24px,7vw,42px)!important;line-height:1.08!important}
+ html main .photo-section .photo-copy>p{font-size:clamp(14px,3.4vw,17px)!important;line-height:1.4!important}
+ .scene-hero .photo-copy{top:var(--hero-copy-top,164px);height:auto;bottom:auto;transform:none;padding:0 clamp(16px,5vw,32px);justify-content:flex-start}
+ .scene-hero #waitlist.hero-store-action{top:calc(100cqw * var(--photo-ratio) * .915 - var(--hero-copy-top,164px));left:0;width:100%}
+}
+
+/* Equal section rhythm independent of the product grid's natural height. */
+html main section.model-section{--models-space:clamp(20px,3vw,40px);height:auto!important;min-height:0!important;padding-block:var(--models-space);gap:var(--models-space)}
+html main section.model-section .model-heading{margin:0!important;font-size:clamp(24px,3.6vw,46px)!important;line-height:1.15!important}
+.model-section .model-grid{margin-block:0}
+@media(max-width:767px){
+ .scene-hero .hero-store-cta{font-size:clamp(9px,2.8vw,13px);min-height:clamp(32px,10vw,48px);padding:clamp(8px,2.5vw,13px) clamp(12px,4vw,20px);gap:clamp(10px,3vw,20px)}
+ .scene-hero .hero-store-cta svg{width:clamp(14px,4vw,20px);height:clamp(14px,4vw,20px)}
+}
+
+@media(max-width:767px){.scene-hero #waitlist.hero-store-action{transform:none;translate:0 -50%}}
+
+/* Match outer breathing room to the first row's visible product silhouettes. */
+html main section.model-section{padding-block:var(--models-visible-space,var(--models-space))}
