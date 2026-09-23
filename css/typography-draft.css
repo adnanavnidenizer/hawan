@@ -177,7 +177,7 @@ html main section.model-section .model-heading{font-family:'Cormorant Garamond',
 /* Give the designer quotation room and a fluid editorial scale. */
 html main section.quotation-section{background:#aa927b;height:auto;min-height:var(--section-height);padding:clamp(40px,7vw,96px) clamp(24px,8vw,120px)}
 html main section.quotation-section>div{width:100%;max-width:1100px;padding:0}
-html main section.quotation-section p{font-size:clamp(28px,3.4vw,52px)!important;line-height:1.35!important;color:#44403c;text-wrap:pretty;margin:0}
+html main section.quotation-section p{font-size:clamp(24px,2.9vw,44px)!important;line-height:1.35!important;color:#44403c;text-wrap:pretty;margin:0}
 
 /* Equal breathing room around the model heading and grid in both languages. */
 html main section.model-section{--models-space:28px;height:auto;min-height:0!important;padding-top:var(--models-space);padding-bottom:var(--models-space);gap:var(--models-space)}
@@ -253,3 +253,7 @@ html main section.model-section .model-heading{margin:0!important;font-size:clam
 
 /* Match outer breathing room to the first row's visible product silhouettes. */
 html main section.model-section{padding-block:var(--models-visible-space,var(--models-space))}
+
+/* Match designer title spacing to the biography paragraph rhythm. */
+.designer-bio{display:flex;flex-direction:column;gap:24px;align-items:center}
+.designer-bio>h2{margin:0}
