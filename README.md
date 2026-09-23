@@ -1,28 +1,36 @@
-# HAWAN Ritual Objects
+# HAWAN — Custom Mortars & Pestles
 
-Statik İngilizce ve Türkçe web sitesi. Kaynak: 19 Eylül 2026 tarihinde kaydedilen https://www.hawan.co/ kök sürümü (V1) ve aynı sitenin /index-tr Türkçe sayfası. Eski /home sayfası kullanılmamıştır.
+Live site: https://hawan.co/ • Source: https://github.com/adnanavnidenizer/hawan
 
-## Düzenleme
+`main` is the live source of truth. Cloudflare Pages automatically builds pushes to main with `node build.cjs`, output `dist`, framework None. No dependency installation is needed for normal builds.
 
-- `index.html`: İngilizce içerik ve bölüm yapısı.
-- `index-tr.html`: Orijinal Türkçe içerik ve bölüm yapısı.
-- `css/en.css`, `css/tr.css`: Orijinal sayfalarda üretilen stiller; runtime/CDN gerektirmez.
-- `css/fonts.css`, `assets/fonts/`: Yerel Cormorant Garamond ve DM Sans.
-- `assets/images/`: Orijinal siteden indirilen 15 görsel/logo.
-- `js/site.js`: Lightbox ve form davranışı.
+## Continue on another computer
 
-Yerel önizleme için paket kurulumu gerekmez. Klasörü statik HTTP sunucusuyla açın. HTML'e yeni utility sınıfları eklemek otomatik CSS üretmez; ilgili CSS dosyasında stilini de tanımlayın. Mevcut utility stilleri orijinal görsel davranışı korumak için saklandı.
+Install Git and Node.js24, sign into GitHub with access to this repository, then:
 
-## Durum
+```sh
+git clone --depth 1 --single-branch --branch main https://github.com/adnanavnidenizer/hawan.git
+cd hawan
+node build.cjs
+node scripts/check-routes.cjs
+node --test --test-isolation=none tests/contact.test.mjs
+node scripts/preview.cjs
+```
 
-İki dilde form validasyonu vardır. Backend henüz seçilmedi: form hiçbir yere e-posta göndermez, veri saklamaz, sahte başarı mesajı göstermez. Footer sosyal/iletişim/şartlar bağlantıları kaynakta olduğu gibi yer tutucudur. Gerçek adresler yayın öncesinde sağlanmalıdır.
+Open http://127.0.0.1:4173/en/home/ or /tr/ana-sayfa/. PORT can be changed if occupied. Preview binds only to this computer and serves dist, never source files or secrets. Email submission requires the Cloudflare runtime; use the published site/preview for integration checks. Stop preview with Ctrl+C when finished.
 
-`/home`, `/home-tr`, `/index`, `/index-tr` klasörleri doğru dil sayfasına tarayıcı yönlendirmesi içerir. Hosting seçildiğinde HTTP 301 yönlendirmeleri tercih edilmelidir. Kaynak deponun yüklenmesi GoDaddy DNS'ini veya mevcut canlı siteyi değiştirmez.
+Before editing: `git pull --ff-only`. Commit verified changes and `git push origin main` to deploy. Always verify Cloudflare deployment and the live result. Never force-push main. For simultaneous work, use separate branches; fetch/pull before merging. A shallow clone can obtain full remote history with `git fetch --unshallow`.
 
-## GitHub'dan yayın
+## Editable sources
 
-Cloudflare Pages seçilmiştir. GitHub deposu adnanavnidenizer/hawan, üretim dalı main, framework None, build komutu `node build.cjs`, çıktı klasörü `dist`. Bu komut yalnızca site dosyalarını kopyalar; paket kurulumu yoktur. `_redirects` eski /home adresini köke 301 ile yönlendirir. Yayın çıktısında eski yönlendirme klasörleri bulunmaz; böylece uzantısız Türkçe sayfayla yönlendirme döngüsü oluşmaz.
+- `index.html`, `index-tr.html`: home templates.
+- `generate-pages.cjs`: shared header/footer, gallery, store, product, contact, cart and localized routes.
+- `css/`, `js/`: design and browser behavior.
+- `assets/`: all runtime images, product PNGs, fonts, video. Original gallery images retained; thumbnails are separate.
+- `server/`, `functions/`, `tests/`: contact backend and tests.
+- `commerce.json`: store adapter; checkout not connected yet.
+- `docs/`: brand guidance, contact configuration, audit and handover.
 
-Önce pages.dev önizlemesi doğrulanır. Ardından hawan.co ve www.hawan.co eklenir. Kök alan adı için Cloudflare DNS kurulumu gerekebilir; alan adı kaydı GoDaddy'de kalabilir. Mevcut e-posta MX/TXT kayıtları korunmalıdır. Hesap bağlantısı ve DNS geçişi henüz tamamlanmamıştır.
+`en/`, `tr/` and `dist/` are generated, ignored files. Do not edit them. Do not publish `drafts/` or historical archives. The legal review draft is retained in `drafts/terms-review/`.
 
-Özel depodan GitHub Pages yayını hesap planına bağlıdır. Yayın hizmeti ve olası ücretler kullanıcı tarafından kararlaştırılmadan DNS veya hesap planı değiştirilmez.
+See [handover](docs/HANDOVER.md) for accounts, known issues and archive recovery.

@@ -3,3 +3,11 @@ dist/
 .env*
 .wrangler/
 node_modules/
+
+# Generated localized pages; recreated by node build.cjs
+/en/
+/tr/
+*.log
+*.tmp
+.DS_Store
+Thumbs.db

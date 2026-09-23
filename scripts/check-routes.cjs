@@ -1,0 +1,3 @@
+const fs=require('fs'),path=require('path');const root=path.join(__dirname,'..','dist');let count=0;
+for(const url of ['en/home','en/gallery','en/shop','tr/ana-sayfa','tr/galeri','tr/magaza']){const html=fs.readFileSync(path.join(root,url,'index.html'),'utf8');for(const m of html.matchAll(/(?:href|src)="(\/[^"#]*)"/g)){const dest=m[1].split(/[?#]/)[0];if(!fs.existsSync(path.join(root,dest))&&!fs.existsSync(path.join(root,dest,'index.html')))throw Error(url+' missing '+dest);count++;}if(/href="(?:index|#philosophy|#craft)/.test(html))throw Error('Legacy navigation '+url);}
+console.log('Six generated routes: all '+count+' local links and assets resolve.');

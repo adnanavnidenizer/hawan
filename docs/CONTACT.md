@@ -23,7 +23,7 @@ Secrets apply on the next deployment. Production credentials were configured aft
 ## Checks
 `node --test --test-isolation=none tests/contact.test.mjs`
 `node build.cjs`
-`node ../check-hawan-routes.cjs`
+`node scripts/check-routes.cjs`
 
 Tests mock SMTP and Turnstile; live SMTP, Cloudflare bundling and inbox delivery still require a preview deployment and credentials.
 
