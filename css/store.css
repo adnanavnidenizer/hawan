@@ -49,3 +49,8 @@
 .store-collection{padding-top:var(--store-category-space)}
 .store-category-empty{padding-top:var(--store-category-space)}
 @media(max-width:767px){.secondary-page{--store-category-space:64px}}
+
+/* Square representative wood samples share the material label's height. */
+.product-option span{padding:0 12px 0 0;gap:10px;min-height:44px;white-space:nowrap;justify-content:flex-start}
+.product-option .wood-swatch{display:block;width:42px;height:42px;min-width:42px;aspect-ratio:1;object-fit:cover;flex-shrink:0}
+.product-options .material-note{font-size:11px;line-height:1.6;margin:10px 0 0;color:#71695d;max-width:48ch}
